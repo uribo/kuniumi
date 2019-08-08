@@ -1,11 +1,14 @@
-FROM rocker/tidyverse:3.6.0
+FROM rocker/geospatial:3.6.0
 
-ENV RENV_VERSION 0.6.0-61
-
-RUN set -x && \ 
+RUN set -x && \
   apt-get update
 
-RUN set -x && \ 
-  installGithub.r \ 
-    'rstudio/renv@{RENV_VERSION}' && \ 
+ARG GITHUB_PAT
+
+RUN set -x && \
+  echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
+
+RUN set -x && \
+  R -e 'install.packages("remotes", repos = c(CRAN = "https://cran.rstudio.com"))' && \
+  R -e 'remotes::install_github("rstudio/renv@0.6.0-61")' && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
