@@ -1,2 +1,5 @@
 ^zipangu\.Rproj$
 ^\.Rproj\.user$
+^renv$
+^renv\.lock$
+
