@@ -5,7 +5,7 @@ zip_n03_url <- function(year, pref_code) {
                              c(1920L,
                                seq.int(1950, 1985, by = 5L),
                                seq.int(1995, 2005, by = 5L),
-                               seq.int(2006, 2018, by = 1L))))
+                               seq.int(2006, 2019, by = 1L))))
   year_dir <-
     dplyr::case_when(
       year == "1920" ~ "200101",
@@ -32,7 +32,8 @@ zip_n03_url <- function(year, pref_code) {
       year == "2015" ~ "150101",
       year == "2016" ~ "160101",
       year == "2017" ~ "170101",
-      year == "2018" ~ "180101")
+      year == "2018" ~ "180101",
+      year == "2019" ~ "190101")
   paste0(
     "http://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-",
     year,
