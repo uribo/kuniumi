@@ -48,5 +48,7 @@ read_ksj_n03 <- function(path = NULL,
                                        N03_004 = "cityName",
                                        N03_005 = "formationDate",
                                        N03_006 = "disappearanceDate",
-                                       N03_007 = "administrativeAreaCode"))
+                                       N03_007 = "administrativeAreaCode")) %>%
+    dplyr::mutate_at(dplyr::vars(tidyselect::ends_with("Date")),
+                     as.Date)
 }

@@ -13,6 +13,7 @@ Imports:
     purrr,
     rlang,
     sf,
+    tidyselect,
     xml2
 Encoding: UTF-8
 LazyData: true
