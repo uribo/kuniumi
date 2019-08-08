@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  rstudio:
+    build:
+      context: "."
+      args:
+        - GITHUB_PAT=${GITHUB_PAT}
+    ports:
+      - "8787:8787"
+    volumes:
+      - ".:/home/rstudio/zipangu"
+      - "/home/rstudio/zipangu/renv/library/R-3.6/x86_64-apple-darwin18.6.0"

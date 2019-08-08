@@ -2,4 +2,6 @@
 ^\.Rproj\.user$
 ^renv$
 ^renv\.lock$
-
+^Dockerfile$
+^docker-compose\.yml$
+^\.env$
