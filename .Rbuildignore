@@ -3,5 +3,7 @@
 ^renv$
 ^renv\.lock$
 ^Dockerfile$
-^docker-compose\.yml$
+^docker-compose\.yaml$
 ^\.env$
+^LICENSE\.md$
+^inst$
