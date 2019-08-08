@@ -40,25 +40,13 @@ read_ksj_n03 <- function(path = NULL,
                        as_tibble = TRUE,
                        stringsAsFactors = FALSE)
     }
-    xml_info <-
-      list.files(
-        gsub(pattern = "(.+)/.+$",
-             replacement = "\\1",
-             path),
-        pattern = paste0("^N03.+",
-                         gsub(basename(path),
-                              "..+", ""),
-                         ".xml$"),
-        full.names = TRUE)
-    if (length(xml_info) == 1) {
-      xml_info <-
-        xml_info %>%
-        xml2::read_xml() %>%
-        xml2::as_list()
-      d <-
-        d %>%
-        purrr::set_names(names(xml_info$Dataset$AdministrativeBoundary)[2:6], # nolint
-                         attr(d, "sf_column"))
-    }
-    d
+  d %>%
+        purrr::set_names(dplyr::recode(names(d),
+                                       N03_001 = "prefectureName",
+                                       N03_002 = "subPrefectureName",
+                                       N03_003 = "countyName",
+                                       N03_004 = "cityName",
+                                       N03_005 = "formationDate",
+                                       N03_006 = "disappearanceDate",
+                                       N03_007 = "administrativeAreaCode"))
 }
