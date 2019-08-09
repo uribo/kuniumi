@@ -48,12 +48,11 @@ read_ksj_n02 <- function(path = NULL,
     dl_zip <-
       zip_n02_url(.year)
     path <- download_ksj_zip(dl_zip, .download = .download)
+    .type <- rlang::arg_match(.type)
+    path <- dplyr::if_else(.type == "station",
+                           grep("Station", path, value = TRUE),
+                           grep("RailroadSection", path, value = TRUE))
   }
-  .type <- rlang::arg_match(.type)
-  path <- dplyr::if_else(.type == "station",
-                 grep("Station", path, value = TRUE),
-                 grep("RailroadSection", path, value = TRUE))
-
   if (grepl(".shp$", basename(path))) {
     d <- sf::st_read(
       dsn = path,
