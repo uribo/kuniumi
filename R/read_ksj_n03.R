@@ -1,5 +1,4 @@
 #' Kokudosuuchi N03 parser
-#' @importFrom utils download.file unzip
 #' @param path Input file path (`.shp` or `.geojson`)
 #' @param .year Specific year
 #' @param .pref_code Specific prefecture code
@@ -11,23 +10,7 @@ read_ksj_n03 <- function(path = NULL,
     if (is.null(path)) {
       dl_zip <-
         zip_n03_url(.year, .pref_code)
-      path <- dplyr::if_else(.download == TRUE,
-                             ".",
-                             tempdir())
-      zip_path <-
-        paste0(path, "/", basename(dl_zip))
-      dl_zip %>%
-        download.file(zip_path)
-      path <- paste0(path, "/", gsub(".zip", "", basename(dl_zip)))
-      dir.create(path)
-      unzip(zipfile = zip_path,
-            exdir = path)
-      path <-
-        grep("(shp|geojson)$",
-             list.files(path,
-                        full.names = TRUE,
-                        recursive = TRUE),
-             value = TRUE)
+      path <- download_ksj_zip(dl_zip, .download = .download)
     }
     if (grepl(".shp$", basename(path))) {
       d <- sf::st_read(
@@ -51,4 +34,42 @@ read_ksj_n03 <- function(path = NULL,
                                        N03_007 = "administrativeAreaCode")) %>%
     dplyr::mutate_at(dplyr::vars(tidyselect::ends_with("Date")),
                      as.Date)
+}
+
+#' Kokudosuuchi N02 parser
+#' @inheritParams read_ksj_n03
+#' @param .type The type of file. "Railway section (railroadsection)" (default) or "station"
+#' @description If there is no local file, specify the year to download.
+#' @export
+read_ksj_n02 <- function(path = NULL,
+                         .year = NULL, .download = NULL,
+                         .type = c("railroadsection", "station")) {
+  if (is.null(path)) {
+    dl_zip <-
+      zip_n02_url(.year)
+    path <- download_ksj_zip(dl_zip, .download = .download)
+  }
+  .type <- rlang::arg_match(.type)
+  path <- dplyr::if_else(.type == "station",
+                 grep("Station", path, value = TRUE),
+                 grep("RailroadSection", path, value = TRUE))
+
+  if (grepl(".shp$", basename(path))) {
+    d <- sf::st_read(
+      dsn = path,
+      options = c("ENCODING=CP932"),
+      as_tibble = TRUE,
+      stringsAsFactors = FALSE)
+  } else if (grepl(".geojson$", basename(path))) {
+    d <- sf::st_read(dsn = path,
+                     as_tibble = TRUE,
+                     stringsAsFactors = FALSE)
+  }
+  d %>%
+    purrr::set_names(dplyr::recode(names(d),
+                                   N02_001 = "railwayType",
+                                   N02_002 = "serviceProviderType",
+                                   N02_003 = "railwayLineName",
+                                   N02_004 = "operationCompany",
+                                   N02_005 = "stationName"))
 }

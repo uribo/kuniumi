@@ -90,3 +90,37 @@ zip_n03_url <- function(year, pref_code) {
     "_GML.zip"
   )
 }
+
+zip_n02_url <- function(year) {
+
+  year_dir <- substr(year, 3, 4)
+  paste0(
+    "http://nlftp.mlit.go.jp/ksj/gml/data/N02/N02-",
+    year_dir,
+    "/N02-", # nolint
+    year_dir,
+    dplyr::if_else(year_dir == "13",
+                   ".zip",
+                   "_GML.zip")
+  )
+}
+
+#' @importFrom utils download.file unzip
+download_ksj_zip <- function(dl_zip, .download = FALSE) {
+  path <- dplyr::if_else(.download == TRUE,
+                         ".",
+                         tempdir())
+  zip_path <-
+    paste0(path, "/", basename(dl_zip))
+  dl_zip %>%
+    download.file(zip_path)
+  path <- paste0(path, "/", gsub(".zip", "", basename(dl_zip)))
+  dir.create(path)
+  unzip(zipfile = zip_path,
+        exdir = path)
+  grep("(shp|geojson)$",
+         list.files(path,
+                    full.names = TRUE,
+                    recursive = TRUE),
+         value = TRUE)
+}
