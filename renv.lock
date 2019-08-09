@@ -716,13 +716,15 @@
     },
     "usethis": {
       "Package": "usethis",
-      "Version": "1.5.1",
-      "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "usethis",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "1.5.1",
-      "Hash": "d9554c06c56d30d6361b5b24b8c5b083"
+      "Version": "1.5.1.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteUsername": "r-lib",
+      "RemoteRepo": "usethis",
+      "RemoteRef": "master",
+      "RemoteSha": "b2414200c2c941b5a5d168a48cc4ca44d397e809",
+      "RemoteHost": "api.github.com",
+      "Hash": "e3107b8395b6d5995552b41755042bfd"
     },
     "utf8": {
       "Package": "utf8",

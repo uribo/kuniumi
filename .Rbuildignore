@@ -7,3 +7,6 @@
 ^\.env$
 ^LICENSE\.md$
 ^inst$
+^\.travis\.yml$
+^appveyor\.yml$
+^tic\.R$
