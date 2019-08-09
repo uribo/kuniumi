@@ -1,3 +1,48 @@
+build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
+  rlang::arg_match(api)
+  req_url <-
+    glue::glue(
+      "http://nlftp.mlit.go.jp/ksj/api/{version}/index.php/app/{api}.xml?appId={app_id}&lang={lang}&dataformat={data_format}", # nolint
+      version = "1.0b",
+      app_id = "ksjapibeta1",
+      lang = "J",
+      data_format = 1 # JPGIS2.1
+    ) %>%
+    httr::parse_url()
+  if (api == "getKSJURL")
+    req_url$query <- c(req_url$query,
+                       purrr::map_at(list(...),
+                       c("prefCode", "meshCode", "metroArea", "fiscalyear"),
+                       paste,
+                       collapse = ","))
+  req_url
+}
+
+parse_ksj_xml <- function(x) {
+  item <- NULL
+  if (x[[1]][[1]][[1]][[1]] != 0)
+    rlang::abort("error")
+  cat(cli::col_cyan("Hit"),
+      cli::style_bold(x[[1]]$NUMBER[[1]]),
+      cli::col_cyan("records.\n"))
+  tibble::tibble(item = purrr::pluck(purrr::pluck(x, 1), 4)) %>%
+    tidyr::unnest_wider(item) %>%
+    dplyr::mutate_all(unlist)
+}
+
+request_to_ksj <- function(x) {
+  httr::build_url(x) %>%
+    httr::GET() %>%
+    httr::content(encoding = "UTF-8") %>%
+    xml2::as_list() %>%
+    parse_ksj_xml()
+}
+
+ksj_data_url <- function(identifier = identifier, ...) {
+  build_req_url("getKSJURL", identifier = identifier, ...) %>%
+    request_to_ksj()
+}
+
 zip_n03_url <- function(year, pref_code) {
   year <- as.character(year)
   year <- rlang::arg_match(year,

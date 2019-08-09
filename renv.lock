@@ -688,13 +688,15 @@
     },
     "tidyr": {
       "Package": "tidyr",
-      "Version": "0.8.3",
-      "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "tidyr",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "0.8.3",
-      "Hash": "51442fddca0f783dce03baffbe5b790b"
+      "Version": "0.8.3.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteUsername": "tidyverse",
+      "RemoteRepo": "tidyr",
+      "RemoteRef": "51c4ae7eaf7554b243592df077017bbf525fa33e",
+      "RemoteSha": "51c4ae7eaf7554b243592df077017bbf525fa33e",
+      "RemoteHost": "api.github.com",
+      "Hash": "ac0ed47fe6e2edd8b08c2bb50457d7b5"
     },
     "tidyselect": {
       "Package": "tidyselect",
