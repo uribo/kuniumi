@@ -4,3 +4,7 @@ test_that("ksj n03 works", {
   expect_equal(zip_n03_url(2018, 8),
                zip_n03_url(2018, "8"))
 })
+test_that("ksj a30 works", {
+  expect_equal(zip_a30a5_url(meshcode = 4229),
+               "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_4229-jgd_GML.zip") # nolint
+})

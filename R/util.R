@@ -43,6 +43,38 @@ ksj_data_url <- function(identifier = identifier, ...) {
     request_to_ksj()
 }
 
+st_read_csr4612 <- function(path, ...) {
+  sf::st_read(path,
+              stringsAsFactors = FALSE,
+              crs = 4612,
+              as_tibble = TRUE,
+              ...)
+}
+
+zip_a30a5_url <- function(meshcode) {
+  jpmesh::is_meshcode(meshcode)
+  target_mesh <- stringr::str_subset(jpmesh::meshcode_set(80),
+                      paste0(c("3036", "3622", "3623", "3624", "3631", "3641",
+                               "3653", "3724", "3725", "3741", "3823", "3824",
+                               "3831", "3841", "3926", "3942", "4027", "4028",
+                               "4040", "4042", "4129", "4142", "4230", "4328",
+                               "4329", "4440", "4529", "4540", "4629", "4728",
+                               "4739", "4740", "4828", "4839", "5038", "5039",
+                               "5137", "5229", "5435", "5531", "5541", "5939",
+                               "5942", "6039", "6139", "6239", "6243", "6339",
+                               "6343", "6439", "6442", "6445", "6540", "6541",
+                               "6544", "6545", "6546", "6641", "6642", "6644",
+                               "6646", "6647", "6740", "6742", "6747", "6748",
+                               "6840", "6842", "6847", "6848"),
+                             collapse = "|"),
+                      negate = TRUE)
+  if (as.character(meshcode) %in% target_mesh)
+    paste0(
+      "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_",
+      meshcode,
+      "-jgd_GML.zip")
+}
+
 zip_n03_url <- function(year, pref_code) {
   year <- as.character(year)
   year <- rlang::arg_match(year,

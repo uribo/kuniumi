@@ -11,17 +11,23 @@ Imports:
     dplyr,
     glue,
     httr,
+    jpmesh,
     jpndistrict,
+    lubridate,
     magrittr,
     purrr,
     rlang,
     sf,
+    stringi,
+    stringr,
     tibble,
     tidyr,
     tidyselect,
+    units,
     xml2
 Remotes:
-    tidyverse/tidyr@51c4ae7eaf7554b243592df077017bbf525fa33e
+    tidyverse/tidyr@51c4ae7eaf7554b243592df077017bbf525fa33e,
+    uribo/jpmesh
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
