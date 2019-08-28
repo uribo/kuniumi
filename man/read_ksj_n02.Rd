@@ -4,7 +4,7 @@
 \alias{read_ksj_n02}
 \title{Kokudosuuchi N02 parser}
 \usage{
-read_ksj_n02(path = NULL, .year = NULL, .download = NULL,
+read_ksj_n02(path = NULL, .year = NULL, .download = FALSE,
   .type = c("railroadsection", "station"))
 }
 \arguments{

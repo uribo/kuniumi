@@ -149,7 +149,8 @@ download_ksj_zip <- function(dl_zip, .download = FALSE) {
   path <- paste0(path, "/", gsub(".zip", "", basename(dl_zip)))
   dir.create(path)
   unzip(zipfile = zip_path,
-        exdir = path)
+        exdir = path,
+        overwrite = TRUE)
   grep("(shp|geojson)$",
          list.files(path,
                     full.names = TRUE,

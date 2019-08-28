@@ -42,7 +42,7 @@ read_ksj_n03 <- function(path = NULL,
 #' @description If there is no local file, specify the year to download.
 #' @export
 read_ksj_n02 <- function(path = NULL,
-                         .year = NULL, .download = NULL,
+                         .year = NULL, .download = FALSE,
                          .type = c("railroadsection", "station")) {
   if (is.null(path)) {
     dl_zip <-
