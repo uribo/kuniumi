@@ -1,3 +1,8 @@
+#' Kokudosuuchi L03a parser
+#' @inheritParams read_ksj_n03
+#' @inheritParams read_ksj_a30a5
+#' @description If there is no local file, specify year and meshcode to download.
+#' @export
 read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
