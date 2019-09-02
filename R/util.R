@@ -53,7 +53,7 @@ st_read_csr4612 <- function(path, ...) {
 
 zip_a30a5_url <- function(meshcode) {
   jpmesh::is_meshcode(meshcode)
-  target_mesh <- stringr::str_subset(jpmesh::meshcode_set(80),
+  target_mesh <- stringr::str_subset(jpmesh::meshcode_set(mesh_size = 80),
                       paste0(c("3036", "3622", "3623", "3624", "3631", "3641",
                                "3653", "3724", "3725", "3741", "3823", "3824",
                                "3831", "3841", "3926", "3942", "4027", "4028",
@@ -73,6 +73,56 @@ zip_a30a5_url <- function(meshcode) {
       "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_",
       meshcode,
       "-jgd_GML.zip")
+}
+
+zip_l03a_url <- function(year, meshcode, datum = 2) {
+  year <- as.character(year)
+  year <- rlang::arg_match(year,
+                           values = as.character(
+                             c(1976, 1987, 1991, 1997,
+                               2006, 2009, 2014, 2016)))
+  jpmesh::is_meshcode(meshcode)
+  if (as.character(meshcode) %in% jpmesh::meshcode_set(mesh_size = 80))
+    year_dir <-
+    dplyr::case_when(
+      year == "1976" ~ "76",
+      year == "1987" ~ "87",
+      year == "1991" ~ "91",
+      year == "1997" ~ "97",
+      year == "2006" ~ "06",
+      year == "2009" ~ "09",
+      year == "2014" ~ "14",
+      year == "2016" ~ "16")
+  target_mesh <-
+    stringr::str_subset(
+      jpmesh::meshcode_set(mesh_size = 80),
+      paste0(c("3036", "3622", "3623", "3624", "3631", "3641",
+               "3653", "3724", "3725", "3741", "3823", "3824",
+               "3831", "3841", "3926", "3927", "3928", "3942",
+               "4027", "4028", "4040", "4042", "4128", "4129",
+               "4142", "4229", "4230", "4328", "4329", "4429",
+               "4440", "4529", "4530", "4531", "4540", "4629",
+               "4728", "4739", "4740", "4839", "4939", "5038",
+               "5039", "5129", "5139", "5229", "5432", "5433",
+               "5531", "5941", "5942", "6139", "6140", "6141",
+               "6239", "6240", "6241", "6243", "6339", "6340",
+               "6341", "6342", "6343", "6439", "6440", "6441",
+               "6442", "6443", "6444", "6445", "6540", "6541",
+               "6542", "6543", "6544", "6545", "6546", "6641",
+               "6642", "6643", "6644", "6645", "6646", "6647",
+               "6740", "6741", "6742", "6747", "6748", "6840",
+               "6841", "6842", "6847", "6848"),
+             collapse = "|"),
+      negate = TRUE)
+    if (year == "2016" & !as.character(meshcode) %in% target_mesh) {
+      NULL
+    } else {
+      glue::glue(
+        "http://nlftp.mlit.go.jp/ksj/gml/data/L03-a/L03-a-{year_dir}/L03-a-",
+        dplyr::if_else(stringr::str_detect(year_dir, "09|14|16"),
+                       "{year_dir}_{meshcode}-jgd_GML.zip",
+                       "{year_dir}_{meshcode}_GML.zip"))
+      }
 }
 
 zip_n03_url <- function(year, pref_code) {
