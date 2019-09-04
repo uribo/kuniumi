@@ -3,7 +3,7 @@
     "Version": "0.7.0-17"
   },
   "R": {
-    "Version": "3.6.0",
+    "Version": "3.6.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -524,6 +524,10 @@
       "Package": "memoise",
       "Version": "1.1.0",
       "Source": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "memoise",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "1.1.0",
       "Hash": "22ca9b285c10f5dd8c4d1e90231ce558"
     },
     "mgcv": {
@@ -706,6 +710,10 @@
       "Package": "rcmdcheck",
       "Version": "1.3.3",
       "Source": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "rcmdcheck",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "1.3.3",
       "Hash": "577b91be8aea851ea27aad3585adef05"
     },
     "remotes": {
@@ -754,6 +762,10 @@
       "Package": "roxygen2",
       "Version": "6.1.1",
       "Source": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "roxygen2",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "6.1.1",
       "Hash": "5c44ac973ec9b56efd7990e4b4464699"
     },
     "rprojroot": {

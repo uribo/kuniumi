@@ -2,11 +2,14 @@
 local({
 
   # the requested version of renv
-  version <- "0.6.0-47"
+  version <- "0.7.0-9"
 
   # signal that we're loading renv during R startup
   Sys.setenv("RENV_R_INITIALIZING" = "true")
   on.exit(Sys.unsetenv("RENV_R_INITIALIZING"), add = TRUE)
+
+  # signal that we've consented to use renv
+  options(renv.consent = TRUE)
 
   # load the 'utils' package eagerly -- this ensures that renv shims, which
   # mask 'utils' packages, will come first on the search path
@@ -26,6 +29,7 @@ local({
 
   }
 
+  # construct path to renv in library
   libpath <- local({
 
     root <- Sys.getenv("RENV_PATHS_LIBRARY", unset = "renv/library")
