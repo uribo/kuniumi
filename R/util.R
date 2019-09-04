@@ -187,6 +187,37 @@ zip_n02_url <- function(year) {
   )
 }
 
+zip_w05_url <- function(pref_code) {
+  pref_code <-
+    sprintf("%02d", as.numeric(pref_code)) %>%
+    jpndistrict:::prefcode_validate()
+  d <-
+    tibble::tibble(
+    year = c(rep("2006", 4),
+             rep("2007", 18),
+             rep("2008", 18),
+             rep("2009", 7)),
+    pref_code = c(
+      "36", "37", "38", "39", "02",
+      "03", "04", "05", "06", "07",
+      "15", "16", "17", "18", "40",
+      "41", "42", "43", "44", "45",
+      "46", "47", "08", "09", "10",
+      "11", "12", "13", "14", "19",
+      "20", "21", "22", "23", "24",
+      "31", "32", "33", "34", "35",
+      "01", "25", "26", "27", "28",
+      "29", "30")) %>%
+    dplyr::filter(pref_code == !! rlang::enquo(pref_code))
+
+  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-{year_dir}/W05-{year_dir}_{pref_code}_GML.zip",
+             year_dir = dplyr::case_when(
+                 d$year == "2006" ~ "06",
+                 d$year == "2007" ~ "07",
+                 d$year == "2008" ~ "08",
+                 d$year == "2009" ~ "09"))
+}
+
 #' @importFrom utils download.file unzip
 download_ksj_zip <- function(dl_zip, .download = FALSE) {
   path <- dplyr::if_else(.download == TRUE,
