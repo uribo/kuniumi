@@ -2,6 +2,7 @@
 
 export("%>%")
 export(read_ksj_a30a5)
+export(read_ksj_c23)
 export(read_ksj_l03a)
 export(read_ksj_n02)
 export(read_ksj_n03)
