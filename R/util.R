@@ -210,7 +210,7 @@ zip_w05_url <- function(pref_code) {
       "29", "30")) %>%
     dplyr::filter(pref_code == !! rlang::enquo(pref_code))
 
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-{year_dir}/W05-{year_dir}_{pref_code}_GML.zip",
+  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-{year_dir}/W05-{year_dir}_{pref_code}_GML.zip", # nolint
              year_dir = dplyr::case_when(
                  d$year == "2006" ~ "06",
                  d$year == "2007" ~ "07",

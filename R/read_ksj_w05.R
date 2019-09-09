@@ -3,7 +3,7 @@
 #' @param .type File type.
 #' @description If there is no local file, specify the prefecture to download.
 #' @export
-read_ksj_w05 <- function(path = NULL, .pref_code = NULL, .download = FALSE, .type = c("stream", "node")) {
+read_ksj_w05 <- function(path = NULL, .pref_code = NULL, .download = FALSE, .type = c("stream", "node")) { # nolint
   if (is.null(path)) {
     dl_zip <-
       zip_w05_url(.pref_code)

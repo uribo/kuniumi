@@ -3,7 +3,7 @@
 #' @inheritParams read_ksj_a30a5
 #' @description If there is no local file, specify year and meshcode to download.
 #' @export
-read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download = FALSE) {
+read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download = FALSE) { # nolint
   if (is.null(path)) {
     dl_zip <-
       zip_l03a_url(.year, .meshcode, datum = 2)
