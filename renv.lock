@@ -232,13 +232,9 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "4.0",
+      "Version": "4.1",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "curl",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "4.0",
-      "Hash": "7dc1d02a04a75510424d2c7404fadfa7"
+      "Hash": "cdd60bbfb548290b3a6f02f8f4cd9312"
     },
     "desc": {
       "Package": "desc",
@@ -252,9 +248,9 @@
     },
     "devtools": {
       "Package": "devtools",
-      "Version": "2.1.0",
+      "Version": "2.2.0",
       "Source": "CRAN",
-      "Hash": "30e711b77a5bfa480161015ead405a0d"
+      "Hash": "9f0275db22b3a3fbf0f4d8017f370b6a"
     },
     "digest": {
       "Package": "digest",
@@ -400,9 +396,9 @@
     },
     "httpuv": {
       "Package": "httpuv",
-      "Version": "1.5.1",
+      "Version": "1.5.2",
       "Source": "CRAN",
-      "Hash": "3e4206eb62d89401a2a990eba9b3ecac"
+      "Hash": "f708a79efa59756bf40137118c20d837"
     },
     "httr": {
       "Package": "httr",
@@ -489,6 +485,12 @@
       "Version": "2.0.2",
       "Source": "CRAN",
       "Hash": "b28c8f59e316a0fce26b5ba63889b626"
+    },
+    "lifecycle": {
+      "Package": "lifecycle",
+      "Version": "0.1.0",
+      "Source": "CRAN",
+      "Hash": "670a552ae202a4f69e2e644f524dfffd"
     },
     "lubridate": {
       "Package": "lubridate",
@@ -598,13 +600,9 @@
     },
     "pkgbuild": {
       "Package": "pkgbuild",
-      "Version": "1.0.4",
+      "Version": "1.0.5",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "pkgbuild",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "1.0.4",
-      "Hash": "efbc9215b1e6453aa0417bf5516c260b"
+      "Hash": "00ec4a14a879c7fda96b2228cff1c5cc"
     },
     "pkgconfig": {
       "Package": "pkgconfig",
@@ -748,6 +746,12 @@
       "RemoteSha": "1.4.3",
       "Hash": "ac685130d1a25e3f6470960fd29c5693"
     },
+    "rex": {
+      "Package": "rex",
+      "Version": "1.1.2",
+      "Source": "CRAN",
+      "Hash": "6a374bfb33486a98af825be15b6b87bb"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.0",
@@ -806,13 +810,9 @@
     },
     "sf": {
       "Package": "sf",
-      "Version": "0.7-7",
+      "Version": "0.8-0",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "sf",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "0.7-7",
-      "Hash": "8544364b75661f709f5a31cbd0716ea2"
+      "Hash": "a97d5cea14231ec8f443afc5fbde97d3"
     },
     "shiny": {
       "Package": "shiny",
@@ -854,13 +854,9 @@
     },
     "sys": {
       "Package": "sys",
-      "Version": "3.2",
+      "Version": "3.3",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "sys",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "3.2",
-      "Hash": "272daf1b3ba287a42d02e33c89870eae"
+      "Hash": "9ecf6bee5958b8977bd1db3131978a71"
     },
     "testthat": {
       "Package": "testthat",
@@ -880,15 +876,9 @@
     },
     "tidyr": {
       "Package": "tidyr",
-      "Version": "0.8.3.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteUsername": "tidyverse",
-      "RemoteRepo": "tidyr",
-      "RemoteRef": "51c4ae7eaf7554b243592df077017bbf525fa33e",
-      "RemoteSha": "51c4ae7eaf7554b243592df077017bbf525fa33e",
-      "RemoteHost": "api.github.com",
-      "Hash": "ac0ed47fe6e2edd8b08c2bb50457d7b5"
+      "Version": "1.0.0",
+      "Source": "CRAN",
+      "Hash": "8b597bb9db2885612b6bafbc2f83bd08"
     },
     "tidyselect": {
       "Package": "tidyselect",
@@ -902,13 +892,9 @@
     },
     "units": {
       "Package": "units",
-      "Version": "0.6-3",
+      "Version": "0.6-4",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "units",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "0.6-3",
-      "Hash": "ffe2c5dc0431a01c4c14c3d2e04c53fa"
+      "Hash": "00332e4ec4ed784de32dfc35f3125c16"
     },
     "usethis": {
       "Package": "usethis",
@@ -960,13 +946,9 @@
     },
     "whisker": {
       "Package": "whisker",
-      "Version": "0.3-2",
+      "Version": "0.4",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "whisker",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "0.3-2",
-      "Hash": "c6d8a035a88c6e3222f0efaac18406f6"
+      "Hash": "99cb522b4fa9e2cf1592ac5163fd917f"
     },
     "withr": {
       "Package": "withr",
@@ -986,13 +968,9 @@
     },
     "xml2": {
       "Package": "xml2",
-      "Version": "1.2.1",
+      "Version": "1.2.2",
       "Source": "CRAN",
-      "RemoteType": "standard",
-      "RemoteRef": "xml2",
-      "RemoteRepos": "https://cran.rstudio.com",
-      "RemoteSha": "1.2.1",
-      "Hash": "ce87ecc1989b80cfdfcf3c3fbcf4f1d1"
+      "Hash": "22fa8b694a7ffcec094bfb94a405595d"
     },
     "xopen": {
       "Package": "xopen",
