@@ -11,17 +11,29 @@ read_ksj_n03 <- function(path = NULL,
       dl_zip <-
         zip_n03_url(.year, .pref_code)
       path <- download_ksj_zip(dl_zip, .download = .download)
-    }
-    if (grepl(".shp$", basename(path))) {
-      d <- sf::st_read(
-        dsn = path,
-        options = c("ENCODING=CP932"),
-        as_tibble = TRUE,
-        stringsAsFactors = FALSE)
-    } else if (grepl(".geojson$", basename(path))) {
-      d <- sf::st_read(dsn = path,
-                       as_tibble = TRUE,
-                       stringsAsFactors = FALSE)
+      if (sum(grepl("(.shp|.geojson)$", basename(path))) == 1L) {
+        d <- sf::st_read(
+          dsn = grep(".shp$", path, value = TRUE),
+          options = c("ENCODING=CP932"),
+          as_tibble = TRUE,
+          stringsAsFactors = FALSE)
+      } else if (sum(grepl("(.shp|.geojson)$", basename(path))) == 2L) {
+        d <- sf::st_read(dsn = grep(".geojson$", path, value = TRUE),
+                         as_tibble = TRUE,
+                         stringsAsFactors = FALSE)
+      }
+    } else {
+      if (grepl(".shp$", basename(path))) {
+        d <- sf::st_read(
+          dsn = path,
+          options = c("ENCODING=CP932"),
+          as_tibble = TRUE,
+          stringsAsFactors = FALSE)
+      } else if (grepl(".geojson$", basename(path))) {
+        d <- sf::st_read(dsn = path,
+                         as_tibble = TRUE,
+                         stringsAsFactors = FALSE)
+      }
     }
   d %>%
         purrr::set_names(dplyr::recode(names(d),
@@ -52,17 +64,29 @@ read_ksj_n02 <- function(path = NULL,
     path <- dplyr::if_else(.type == "station",
                            grep("Station", path, value = TRUE),
                            grep("RailroadSection", path, value = TRUE))
-  }
-  if (grepl(".shp$", basename(path))) {
-    d <- sf::st_read(
-      dsn = path,
-      options = c("ENCODING=CP932"),
-      as_tibble = TRUE,
-      stringsAsFactors = FALSE)
-  } else if (grepl(".geojson$", basename(path))) {
-    d <- sf::st_read(dsn = path,
-                     as_tibble = TRUE,
-                     stringsAsFactors = FALSE)
+    if (sum(grepl("(.shp|.geojson)$", basename(path))) == 1L) {
+      d <- sf::st_read(
+        dsn = grep(".shp$", path, value = TRUE),
+        options = c("ENCODING=CP932"),
+        as_tibble = TRUE,
+        stringsAsFactors = FALSE)
+    } else if (sum(grepl("(.shp|.geojson)$", basename(path))) == 2L) {
+      d <- sf::st_read(dsn = grep(".geojson$", path, value = TRUE),
+                       as_tibble = TRUE,
+                       stringsAsFactors = FALSE)
+    }
+  } else {
+    if (grepl(".shp$", basename(path))) {
+      d <- sf::st_read(
+        dsn = path,
+        options = c("ENCODING=CP932"),
+        as_tibble = TRUE,
+        stringsAsFactors = FALSE)
+    } else if (grepl(".geojson$", basename(path))) {
+      d <- sf::st_read(dsn = path,
+                       as_tibble = TRUE,
+                       stringsAsFactors = FALSE)
+    }
   }
   d %>%
     purrr::set_names(dplyr::recode(names(d),
