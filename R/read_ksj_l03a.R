@@ -18,7 +18,7 @@ read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download
                 stringsAsFactors = FALSE,
                 options = c("ENCODING=CP932"))
   } else {
-    d <- st_read_csr4612(path,
+    d <- st_read_crs4612(path,
                     options = c("ENCODING=CP932"))
   }
   xml_info <-

@@ -11,7 +11,7 @@ read_ksj_a30a5 <- function(path = NULL, .meshcode = NULL, .download = FALSE) {
     path <- download_ksj_zip(dl_zip, .download = .download)
   }
   d <-
-    st_read_csr4612(path) %>%
+    st_read_crs4612(path) %>%
     dplyr::mutate_if(is.character,
                      dplyr::na_if,
                      y = intToUtf8(c(31354, 30333), multiple = FALSE))

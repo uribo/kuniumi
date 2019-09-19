@@ -21,7 +21,7 @@ read_ksj_c23 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
     path <- download_ksj_zip(dl_zip, .download = .download)
   }
   d <-
-    st_read_csr4612(path) %>%
+    st_read_crs4612(path) %>%
     dplyr::mutate(C23_007 = dplyr::case_when(
       C23_007 == "false" ~ FALSE,
       C23_007 == "true" ~ TRUE))

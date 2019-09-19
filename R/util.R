@@ -43,7 +43,7 @@ ksj_data_url <- function(identifier = identifier, ...) {
     request_to_ksj()
 }
 
-st_read_csr4612 <- function(path, ...) {
+st_read_crs4612 <- function(path, ...) {
   sf::st_read(path,
               stringsAsFactors = FALSE,
               crs = 4612,

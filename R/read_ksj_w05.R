@@ -10,7 +10,7 @@ read_ksj_w05 <- function(path = NULL, .pref_code = NULL, .download = FALSE, .typ
     path <- download_ksj_zip(dl_zip, .download = .download)
   }
   d <-
-    st_read_csr4612(path)
+    st_read_crs4612(path)
   rlang::arg_match(.type)
   if (grepl("RiverNode", basename(path))) {
     d <-
