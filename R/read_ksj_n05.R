@@ -1,3 +1,7 @@
+#' Kokudosuuchi N05 parser
+#' @inheritParams read_ksj_n03
+#' @description If there is no local file, specify the year and pref_code to download.
+#' @export
 read_ksj_n05 <- function(path = NULL, .year = NULL, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
