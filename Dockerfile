@@ -10,5 +10,5 @@ RUN set -x && \
 
 RUN set -x && \
   R -e 'install.packages("remotes", repos = c(CRAN = "https://cran.rstudio.com"))' && \
-  R -e 'remotes::install_github("rstudio/renv@0.7.0-17")' && \
+  R -e 'remotes::install_github("rstudio/renv@0.7.0-77")' && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
