@@ -12,3 +12,16 @@ test_that("ksj c23 works", {
   expect_equal(zip_c23_url(pref_code = 33),
                "http://nlftp.mlit.go.jp/ksj/gml/data/C23/C23-06/C23-06_33_GML.zip") # nolint
 })
+
+test_that("ksj n05 works", {
+  expect_equal(zip_n05_url(year = 2013),
+               "http://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-13/N05-13.zip") # nolint
+  expect_equal(zip_n05_url(year = 2016),
+               "http://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-16/N05-16_GML.zip") # nolint
+})
+
+test_that("don't works", {
+  expect_error(
+    read_ksj_n05(.year = 2019)
+  )
+})

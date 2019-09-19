@@ -51,6 +51,16 @@ st_read_crs4612 <- function(path, ...) {
               ...)
 }
 
+st_read_crs6668 <- function(path, ...) {
+  sf::st_read(
+    path,
+    crs = 6668,
+    options = c("ENCODING=CP932"),
+    stringsAsFactors = FALSE,
+    as_tibble = TRUE,
+    ...)
+}
+
 zip_a30a5_url <- function(meshcode) {
   jpmesh::is_meshcode(meshcode)
   target_mesh <- stringr::str_subset(jpmesh::meshcode_set(mesh_size = 80),
@@ -123,6 +133,20 @@ zip_l03a_url <- function(year, meshcode, datum = 2) {
                        "{year_dir}_{meshcode}-jgd_GML.zip",
                        "{year_dir}_{meshcode}_GML.zip"))
       }
+}
+
+zip_n05_url <- function(year) {
+  year_dir <- NULL
+  year <- as.character(year)
+  year <- rlang::arg_match(year,
+                           values = as.character(
+                             seq.int(2011, 2018, by = 1L)))
+  glue::glue(
+    "http://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-{year_dir}/N05-{year_dir_zip}", # nolint
+    year_dir = substr(year, 3L, 4L),
+    year_dir_zip = dplyr::if_else(year == "2013",
+                                  "13.zip",
+                                  paste0(year_dir, "_GML.zip")))
 }
 
 zip_n03_url <- function(year, pref_code) {
