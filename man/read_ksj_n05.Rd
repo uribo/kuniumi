@@ -4,7 +4,8 @@
 \alias{read_ksj_n05}
 \title{Kokudosuuchi N05 parser}
 \usage{
-read_ksj_n05(path = NULL, .year = NULL, .download = FALSE)
+read_ksj_n05(path = NULL, .year = NULL, .download = FALSE,
+  .type = c("railroadSection", "station"))
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
@@ -12,6 +13,8 @@ read_ksj_n05(path = NULL, .year = NULL, .download = FALSE)
 \item{.year}{Specific year}
 
 \item{.download}{If `true`, the specified file is downloaded to the current working directory.}
+
+\item{.type}{File type. Select either "railroadSection" or "station"}
 }
 \description{
 If there is no local file, specify the year and pref_code to download.

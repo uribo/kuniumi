@@ -1,12 +1,20 @@
 #' Kokudosuuchi N05 parser
 #' @inheritParams read_ksj_n03
+#' @param .type File type. Select either "railroadSection" or "station"
 #' @description If there is no local file, specify the year and pref_code to download.
 #' @export
-read_ksj_n05 <- function(path = NULL, .year = NULL, .download = FALSE) {
+read_ksj_n05 <- function(path = NULL, .year = NULL, .download = FALSE,
+                         .type = c("railroadSection", "station")) {
   if (is.null(path)) {
     dl_zip <-
       zip_n05_url(.year)
     path <- download_ksj_zip(dl_zip, .download = .download)
+
+    rlang::arg_match(.type)
+    path <- switch(.type,
+            railroadSection = grep("RailroadSection", path, value = TRUE),
+            station = grep("Station", path, value = TRUE))
+
     if (sum(grepl("(.shp|.geojson)$", basename(path))) == 1L) {
       d <- st_read_crs6668(
         path = grep(".shp$", path, value = TRUE))
