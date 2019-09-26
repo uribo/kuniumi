@@ -20,6 +20,13 @@ test_that("ksj n05 works", {
                "http://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-16/N05-16_GML.zip") # nolint
 })
 
+test_that("ksj p09", {
+  expect_equal(zip_p09(meshcode = "3927"),
+               "http://nlftp.mlit.go.jp/ksj/gml/data/P09/P09-10/P09-10_3927-jgd_GML.zip") # nolint
+  expect_error(zip_p09(meshcode = "6338"),
+               "No data with selected meshcode.")
+})
+
 test_that("ksj p23", {
   expect_equal(zip_p23_url(33),
                "http://nlftp.mlit.go.jp/ksj/gml/data/P23/P23-12/P23-12_33_GML.zip") # nolint

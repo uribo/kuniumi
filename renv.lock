@@ -74,6 +74,27 @@
       "RemoteSha": "1.2-17",
       "Hash": "a60009c832f495604f54399f21d89cc8"
     },
+    "R.methodsS3": {
+      "Package": "R.methodsS3",
+      "Version": "1.7.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d2c60692c1500e87b06a602b316817ba"
+    },
+    "R.oo": {
+      "Package": "R.oo",
+      "Version": "1.22.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "3ed00bcfb667ecbfcc1ddfa07d63e6b3"
+    },
+    "R.utils": {
+      "Package": "R.utils",
+      "Version": "2.9.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "081935deb684d2f5fdb39d34cba21774"
+    },
     "R6": {
       "Package": "R6",
       "Version": "2.4.0",
@@ -224,6 +245,17 @@
       "RemoteSha": "1.2.0",
       "Hash": "ce91c46caba29e30c44cfd87659bf8a4"
     },
+    "codetools": {
+      "Package": "codetools",
+      "Version": "0.2-16",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "codetools",
+      "RemoteRepos": "https://mran.microsoft.com/snapshot/2019-08-04",
+      "RemoteSha": "0.2-16",
+      "Hash": "3bf2a0853d7faf7f865d0b877946e452"
+    },
     "colorspace": {
       "Package": "colorspace",
       "Version": "1.4-1",
@@ -358,6 +390,17 @@
       "RemoteSha": "0.4.0",
       "Hash": "cd87b0162287f0da225edfaa2fd3a20c"
     },
+    "foreach": {
+      "Package": "foreach",
+      "Version": "1.4.7",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "foreach",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "1.4.7",
+      "Hash": "679941326860ea87464d7f010341fb05"
+    },
     "fs": {
       "Package": "fs",
       "Version": "1.3.1",
@@ -368,6 +411,20 @@
       "RemoteRepos": "https://cran.rstudio.com",
       "RemoteSha": "1.3.1",
       "Hash": "dba7e43c4103d978cb7c95b97987cc68"
+    },
+    "gdalUtils": {
+      "Package": "gdalUtils",
+      "Version": "2.0.1.14",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "63cec81bea616205f7238fde8873dc40"
+    },
+    "gdtools": {
+      "Package": "gdtools",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4287487e1f76cb467e1d94b19da8d422"
     },
     "ggplot2": {
       "Package": "ggplot2",
@@ -474,6 +531,17 @@
       "RemoteSha": "0.3.1",
       "Hash": "4a15d8cfc931554fb2e71d66c1313b45"
     },
+    "iterators": {
+      "Package": "iterators",
+      "Version": "1.0.12",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "iterators",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "1.0.12",
+      "Hash": "30ef58a17d970ae05c85793da79152d6"
+    },
     "jpmesh": {
       "Package": "jpmesh",
       "Version": "1.1.3.9000",
@@ -544,12 +612,26 @@
       "RemoteSha": "0.2.2",
       "Hash": "d2f5e98b8b7ae633e252830c3243c2ab"
     },
+    "leafem": {
+      "Package": "leafem",
+      "Version": "0.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9c1ef327d865ae46c00941fc155d4bd6"
+    },
     "leaflet": {
       "Package": "leaflet",
       "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "b28c8f59e316a0fce26b5ba63889b626"
+    },
+    "leafpop": {
+      "Package": "leafpop",
+      "Version": "0.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "69db4082b830077b0d867c6c0fd0596b"
     },
     "lifecycle": {
       "Package": "lifecycle",
@@ -579,6 +661,13 @@
       "RemoteRepos": "https://cran.rstudio.com",
       "RemoteSha": "1.5",
       "Hash": "dee1d97cffddfd3ed969e224bd0826d0"
+    },
+    "mapview": {
+      "Package": "mapview",
+      "Version": "2.7.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6c9811731de956c115ad5ba82b308246"
     },
     "markdown": {
       "Package": "markdown",
@@ -846,6 +935,17 @@
       "Repository": "CRAN",
       "Hash": "6a374bfb33486a98af825be15b6b87bb"
     },
+    "rgdal": {
+      "Package": "rgdal",
+      "Version": "1.4-4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "rgdal",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "1.4-4",
+      "Hash": "58aadc4b0b11f9faaf8eaec588c0dd2a"
+    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.0",
@@ -896,6 +996,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "7ea870b707f4ef757127a610c2556e29"
+    },
+    "satellite": {
+      "Package": "satellite",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "dd2eeef643fb6e585d0a42af7eda50bf"
     },
     "scales": {
       "Package": "scales",
@@ -965,12 +1072,26 @@
       "RemoteSha": "1.4.0",
       "Hash": "41d6310ad18bd019a203d7adc496a28b"
     },
+    "svglite": {
+      "Package": "svglite",
+      "Version": "1.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c2211d7af9a73dbe9cbdf1c032d0a4ed"
+    },
     "sys": {
       "Package": "sys",
       "Version": "3.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "9ecf6bee5958b8977bd1db3131978a71"
+    },
+    "systemfonts": {
+      "Package": "systemfonts",
+      "Version": "0.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "cb7a90c28d3304b1373d73939feb2f46"
     },
     "testthat": {
       "Package": "testthat",
@@ -1038,6 +1159,13 @@
       "RemoteSha": "1.1.4",
       "Hash": "3f1a5a5b184f63379f8e6c08d5036c53"
     },
+    "uuid": {
+      "Package": "uuid",
+      "Version": "0.1-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4a468848f7fb748b54a63a8d2f2da17e"
+    },
     "vctrs": {
       "Package": "vctrs",
       "Version": "0.2.0",
@@ -1066,6 +1194,17 @@
       "RemoteRepos": "https://cran.rstudio.com",
       "RemoteSha": "0.3.0",
       "Hash": "1f264fa42320c4f44b1689d89101e823"
+    },
+    "webshot": {
+      "Package": "webshot",
+      "Version": "0.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "RemoteType": "standard",
+      "RemoteRef": "webshot",
+      "RemoteRepos": "https://cran.rstudio.com",
+      "RemoteSha": "0.5.1",
+      "Hash": "751636e977781ba79331a00d96bfd7bd"
     },
     "whisker": {
       "Package": "whisker",
