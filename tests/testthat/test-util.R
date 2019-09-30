@@ -27,6 +27,11 @@ test_that("ksj p09", {
                "No data with selected meshcode.")
 })
 
+test_that("ksj p12", {
+  expect_equal(zip_p12_url(pref_code = 12),
+               "http://nlftp.mlit.go.jp/ksj/gml/data/P12/P12-14/P12-14_12_GML.zip") # nolint
+})
+
 test_that("ksj p23", {
   expect_equal(zip_p23_url(33),
                "http://nlftp.mlit.go.jp/ksj/gml/data/P23/P23-12/P23-12_33_GML.zip") # nolint
