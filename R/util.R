@@ -18,6 +18,12 @@ build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
   req_url
 }
 
+build_isj_req_url <- function(area_code = 13000, fiscal_year = c("平成25年")) {
+  glue::glue("{url}?appId=isjapibeta1&areaCode={area_code}&fiscalyear='{fiscal_year}'&posLevel=0",
+             url = "http://nlftp.mlit.go.jp/isj/api/1.0b/index.php/app/getISJURL.xml") %>%
+    httr::parse_url()
+}
+
 parse_ksj_xml <- function(x) {
   item <- NULL
   if (x[[1]][[1]][[1]][[1]] != 0)
@@ -40,6 +46,11 @@ request_to_ksj <- function(x) {
 
 ksj_data_url <- function(identifier = identifier, ...) {
   build_req_url("getKSJURL", identifier = identifier, ...) %>%
+    request_to_ksj()
+}
+
+isj_data_url <- function(area_code, fiscal_year) {
+  build_isj_req_url(area_code, fiscal_year) %>%
     request_to_ksj()
 }
 
