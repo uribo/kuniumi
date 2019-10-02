@@ -18,10 +18,12 @@ build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
   req_url
 }
 
-build_isj_req_url <- function(area_code = 13000, fiscal_year = c("平成25年")) {
+build_isj_req_url <- function(area_code = NULL, fiscal_year = NULL) {
+  # nolint start
   glue::glue("{url}?appId=isjapibeta1&areaCode={area_code}&fiscalyear='{fiscal_year}'&posLevel=0",
              url = "http://nlftp.mlit.go.jp/isj/api/1.0b/index.php/app/getISJURL.xml") %>%
     httr::parse_url()
+  # nolint end
 }
 
 parse_ksj_xml <- function(x) {
@@ -254,10 +256,11 @@ zip_w05_url <- function(pref_code) {
 }
 
 #' @importFrom utils download.file unzip
-download_ksj_zip <- function(dl_zip, .download = FALSE) {
+download_ksj_zip <- function(dl_zip, .download = FALSE, ...) {
   path <- dplyr::if_else(.download == TRUE,
                          ".",
                          tempdir())
+  check_dl_comment(...)
   zip_path <-
     paste0(path, "/", basename(dl_zip))
   dl_zip %>%
@@ -267,9 +270,45 @@ download_ksj_zip <- function(dl_zip, .download = FALSE) {
   unzip(zipfile = zip_path,
         exdir = path,
         overwrite = TRUE)
-  grep("(shp|geojson)$",
+  grep("(shp|geojson|csv)$",
          list.files(path,
                     full.names = TRUE,
                     recursive = TRUE),
-         value = TRUE)
+         value = TRUE,
+       ignore.case = TRUE)
+}
+
+check_dl_comment <- function(source = NULL) {
+
+  warning(
+    glue::glue(
+      intToUtf8(c(12371, 12398, 12469, 12540, 12499, 12473, 12399,
+                  12289, 12300, 22269, 22303, 20132, 36890, 30465),
+                multiple = FALSE),
+      " {source_service}",
+      intToUtf8(c(65288, 12459, 12486, 12468, 12522, 21517, 65289,
+                  12301, 12434, 12418, 12392, 12395, 21152, 24037,
+                  32773, 12364, 20316, 25104),
+                multiple = FALSE),
+      "\n",
+      intToUtf8(c(20197, 19979, 12398), multiple = FALSE),
+      "{source_service}",
+      intToUtf8(c(12480, 12454, 12531, 12525, 12540, 12489, 12469,
+                  12540, 12499, 12473, 12398, 21033, 29992, 32004,
+                  27454, 12434, 12372, 30906, 35469, 12398, 19978,
+                  12372, 21033, 29992, 12367, 12384, 12373, 12356, 65306),
+                multiple = FALSE),
+      "\n",
+      "{source_url}",
+      source_service = dplyr::case_when(source == "isj" ~ intToUtf8(c(20301, 32622, 21442, 29031, 24773, 22577), # nolint
+                                                                    multiple = FALSE),
+                                        source == "ksj" ~ intToUtf8(c(22269, 22303, 25968, 20516, 24773, 22577), # nolint
+                                                                    multiple = FALSE)),
+      source_url = dplyr::case_when(
+        source == "isj" ~ "http://nlftp.mlit.go.jp/isj/agreement.html",
+        source == "ksj" ~ "http://nlftp.mlit.go.jp/ksj/other/yakkan.html"
+      )
+    ),
+    call. = FALSE
+  )
 }

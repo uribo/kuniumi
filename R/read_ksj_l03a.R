@@ -9,7 +9,7 @@ read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download
       zip_l03a_url(.year, .meshcode, datum = 2)
     if (rlang::is_null(dl_zip))
       rlang::abort("Data does not match with the condition")
-    path <- download_ksj_zip(dl_zip, .download = .download)
+    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
   }
   if (stringr::str_detect(basename(path), "tky.(geojson|shp)")) {
     d <- sf::st_read(path,

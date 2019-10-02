@@ -11,3 +11,4 @@
 ^appveyor\.yml$
 ^tic\.R$
 ^\.Rprofile$
+^README\.Rmd$

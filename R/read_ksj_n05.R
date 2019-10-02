@@ -8,7 +8,7 @@ read_ksj_n05 <- function(path = NULL, .year = NULL, .download = FALSE,
   if (is.null(path)) {
     dl_zip <-
       zip_n05_url(.year)
-    path <- download_ksj_zip(dl_zip, .download = .download)
+    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
 
     rlang::arg_match(.type)
     path <- switch(.type,

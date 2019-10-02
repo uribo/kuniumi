@@ -8,7 +8,7 @@ read_ksj_a30a5 <- function(path = NULL, .meshcode = NULL, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
       zip_a30a5_url(meshcode = .meshcode)
-    path <- download_ksj_zip(dl_zip, .download = .download)
+    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
   }
   d <-
     st_read_crs4612(path) %>%

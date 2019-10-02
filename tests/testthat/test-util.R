@@ -44,3 +44,8 @@ test_that("don't works", {
     read_ksj_n05(.year = 2019)
   )
 })
+
+test_that("download message notice", {
+  expect_warning(check_dl_comment("isj"))
+  expect_warning(check_dl_comment("ksj"))
+})

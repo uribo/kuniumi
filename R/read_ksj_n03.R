@@ -10,7 +10,7 @@ read_ksj_n03 <- function(path = NULL,
     if (is.null(path)) {
       dl_zip <-
         zip_n03_url(.year, .pref_code)
-      path <- download_ksj_zip(dl_zip, .download = .download)
+      path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
       if (sum(grepl("(.shp|.geojson)$", basename(path))) == 1L) {
         d <- sf::st_read(
           dsn = grep(".shp$", path, value = TRUE),

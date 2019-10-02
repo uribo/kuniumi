@@ -13,7 +13,7 @@ read_ksj_p19 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
       zip_p19_url(.pref_code)
-    path <- download_ksj_zip(dl_zip, .download = .download)
+    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
   }
   st_read_crs4612(path) %>%
     purrr::set_names(
