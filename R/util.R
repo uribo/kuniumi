@@ -300,10 +300,13 @@ check_dl_comment <- function(source = NULL) {
                 multiple = FALSE),
       "\n",
       "{source_url}",
-      source_service = dplyr::case_when(source == "isj" ~ intToUtf8(c(20301, 32622, 21442, 29031, 24773, 22577), # nolint
-                                                                    multiple = FALSE),
-                                        source == "ksj" ~ intToUtf8(c(22269, 22303, 25968, 20516, 24773, 22577), # nolint
-                                                                    multiple = FALSE)),
+      source_service = dplyr::case_when(
+        source == "isj"
+        ~ intToUtf8(c(20301, 32622, 21442, 29031, 24773, 22577), # nolint
+        multiple = FALSE),
+        source == "ksj"
+        ~ intToUtf8(c(22269, 22303, 25968, 20516, 24773, 22577), # nolint
+        multiple = FALSE)),
       source_url = dplyr::case_when(
         source == "isj" ~ "http://nlftp.mlit.go.jp/isj/agreement.html",
         source == "ksj" ~ "http://nlftp.mlit.go.jp/ksj/other/yakkan.html"
