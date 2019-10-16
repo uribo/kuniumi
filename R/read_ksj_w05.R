@@ -16,16 +16,26 @@ read_ksj_w05 <- function(path = NULL, .pref_code = NULL, .download = FALSE, .typ
     d <-
       d
   } else if (grepl("Stream", basename(path))) {
-    d <-
-      d %>%
-      purrr::set_names(c(
-        # "waterSystemCode",
-                         "location", "riverCode",
-                         "sectionType", "riverName", "originalDataType",
-                         "flowDirection",
-                         "startRiverNode", "endRiverNode",
-                         "startStreamNode", "endStreamNode",
-                         "geometry"))
+    w05_stream_vars <-
+      c(
+      # "waterSystemCode",
+      "location", "riverCode",
+      "sectionType", "riverName", "originalDataType",
+      "flowDirection",
+      "startRiverNode", "endRiverNode",
+      "startStreamNode", "endStreamNode",
+      "geometry")
+    if (ncol(d) == 12L) {
+      d <-
+        d %>%
+        purrr::set_names(append(w05_stream_vars,
+                                "length",
+                                after = 10))
+    } else if (ncol(d) == 11L) {
+      d <-
+        d %>%
+        purrr::set_names(w05_stream_vars)
+    }
   }
   d
 }
