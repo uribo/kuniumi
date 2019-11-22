@@ -12,3 +12,4 @@
 ^tic\.R$
 ^\.Rprofile$
 ^README\.Rmd$
+^data-raw$
