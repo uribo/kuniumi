@@ -39,6 +39,7 @@ Suggests:
     forcats,
     janitor,
     rvest,
+    usethis,
     testthat (>= 2.1.0),
     WikidataR
 URL: https://github.com/uribo/zipangu

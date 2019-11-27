@@ -834,12 +834,26 @@
       "RemoteSha": "0.10",
       "Hash": "04552808fd065fdf0fec7bad340eb83c"
     },
+    "rvest": {
+      "Package": "rvest",
+      "Version": "0.3.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d2fec753d468d89309996067fb89e09d"
+    },
     "scales": {
       "Package": "scales",
       "Version": "1.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a98877092d646d981a9249d5ea7774ea"
+    },
+    "selectr": {
+      "Package": "selectr",
+      "Version": "0.4-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "72a25e5b6829f6eaf89b16ad1a018051"
     },
     "sf": {
       "Package": "sf",
