@@ -6,6 +6,8 @@ Authors@R: c(
     )
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
+Depends: 
+    R (>= 3.1)
 Imports:
     cli,
     data.table,
@@ -30,7 +32,7 @@ Remotes:
     uribo/jpmesh
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Suggests: 
     assertr,
     bit64,

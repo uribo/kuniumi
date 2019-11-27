@@ -4,8 +4,12 @@
 \alias{read_ksj_w05}
 \title{Kokudosuuchi W05 parser}
 \usage{
-read_ksj_w05(path = NULL, .pref_code = NULL, .download = FALSE,
-  .type = c("stream", "node"))
+read_ksj_w05(
+  path = NULL,
+  .pref_code = NULL,
+  .download = FALSE,
+  .type = c("stream", "node")
+)
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}

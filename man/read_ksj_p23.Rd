@@ -4,8 +4,12 @@
 \alias{read_ksj_p23}
 \title{Kokudosuuchi P23 parser}
 \usage{
-read_ksj_p23(path = NULL, .pref_code = NULL, .download = FALSE,
-  .type = c("point", "line"))
+read_ksj_p23(
+  path = NULL,
+  .pref_code = NULL,
+  .download = FALSE,
+  .type = c("point", "line")
+)
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}

@@ -4,8 +4,12 @@
 \alias{read_ksj_n02}
 \title{Kokudosuuchi N02 parser}
 \usage{
-read_ksj_n02(path = NULL, .year = NULL, .download = FALSE,
-  .type = c("railroadsection", "station"))
+read_ksj_n02(
+  path = NULL,
+  .year = NULL,
+  .download = FALSE,
+  .type = c("railroadsection", "station")
+)
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
