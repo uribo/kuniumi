@@ -36,6 +36,7 @@ Suggests:
     bit64,
     forcats,
     janitor,
+    rvest,
     testthat (>= 2.1.0),
     WikidataR
 URL: https://github.com/uribo/zipangu
