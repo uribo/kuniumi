@@ -8,7 +8,7 @@ services:
     ports:
       - "8787:8787"
     volumes:
-      - ".:/home/rstudio/zipangu"
-      - "/home/rstudio/zipangu/renv/library/R-3.6/x86_64-apple-darwin18.6.0"
+      - ".:/home/rstudio/kuniumi"
+      - "/home/rstudio/kuniumi/renv/library/R-3.6/x86_64-apple-darwin18.6.0"
     environment:
       PASSWORD: ${PASSWORD}
