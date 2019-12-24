@@ -255,6 +255,7 @@ level_key <- c(`01233` = "https://www.city.date.hokkaido.jp/",
                `33208` = "http://www.city.soja.okayama.jp/",
                `34203` = "https://www.takeharakankou.jp/",
                `36468` = "https://www.town.tokushima-tsurugi.lg.jp/",
+               `40202` = "http://www.city.omuta.lg.jp/default.aspx",
                `40344` = "https://www.town.sue.fukuoka.jp/",
                `42201` = "https://www.city.nagasaki.lg.jp/",
                `46218` = "http://www.city-kirishima.jp/",
@@ -266,7 +267,8 @@ level_key <- c(`01233` = "https://www.city.date.hokkaido.jp/",
                `47306` = "https://www.nakijin.jp/",
                `47311` = "https://www.vill.onna.okinawa.jp/",
                `47324` = "http://www.vill.yomitan.okinawa.jp/",
-               `47325` = "http://www.town.kadena.okinawa.jp/") %>%
+               `47325` = "http://www.town.kadena.okinawa.jp/",
+               `47358` = "http://vill.kitadaito.okinawa.jp/top_html.html") %>%
   ensurer::ensure(length(.) == nrow(df_jp_all1724_manualfix))
 
 df_jp_all1724_manualfix <-
@@ -284,3 +286,6 @@ city_list <-
       filter(!is.na(url)),
     df_jp_all1724_manualfix)
 usethis::use_data(city_list, overwrite = TRUE)
+# city_list <-
+#   city_list %>%
+#   mutate(url = recode(administrative_area_code, !!!level_key, .default = url))
