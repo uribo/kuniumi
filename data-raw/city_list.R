@@ -1,3 +1,6 @@
+###################################
+# 全国の市区町村についての情報 (ウェブページのURL)
+###################################
 ## code to prepare `city_list` dataset goes here
 pkgload::load_all()
 library(dplyr)
@@ -163,6 +166,7 @@ level_key <- c(`01233` = "https://www.city.date.hokkaido.jp/",
                `01636` = "http://www.town.shimizu.hokkaido.jp/",
                `01644` = "https://www.town.hokkaido-ikeda.lg.jp/",
                `01696` = NA_character_,
+               `08302` = "http://www.town.ibaraki.lg.jp/index2.html",
                `02445` = "http://www.town.aomori-nanbu.lg.jp/",
                `04324` = "http://www.town.kawasaki.miyagi.jp/",
                `04505` = "http://www.town.misato.miyagi.jp/",
