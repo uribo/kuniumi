@@ -168,3 +168,27 @@ city_address_fixed <- c(
   `40203` = "福岡県久留米市城南町15番地3",
   `47358` = "沖縄県島尻郡北大東村字中野218"
 )
+
+pop_key <-
+  c(`01100` = "http://www.city.sapporo.jp/toukei/jinko/suikei-jinko/suikei-jinko.html",
+    `01202` = "https://www.city.hakodate.hokkaido.jp/docs/2015020600107/",
+    `01203` = "https://www.city.otaru.lg.jp/sisei_tokei/reiki_tokei_siryo/toukei/jinko/jinkou-30.html",
+    `01204` = "https://www.city.asahikawa.hokkaido.jp/700/701/705/d055301.html",
+    `01205` = "https://www.city.muroran.lg.jp/main/org3600/toukei_mokuji.html",
+    `01206` = "https://www.city.kushiro.lg.jp/shisei/toukei/jinkou/0001.html",
+    `01207` = "https://www.city.obihiro.hokkaido.jp/shiminkankyoubu/kosekijuuminka/b020101zinkousetasu.html",
+    `01208` = "https://www.city.kitami.lg.jp/docs/2010120600156/",
+    `01209` = "https://www.city.yubari.lg.jp/gyoseijoho/tokeidata/jinkosuii/suiijyuki.html",
+    `01210` = "https://www.city.iwamizawa.hokkaido.jp/content/detail/1504241/",
+    `01211` = "https://www.city.abashiri.hokkaido.jp/020syokai/jinko.html",
+    `01212` = NA_character_,
+    `01213` = "http://www.city.tomakomai.hokkaido.jp/shisei/shisei/shiseihoshin/tokei/jinkoshiryo/shinaichobetsu.html",
+    `01214` = NA_character_,
+    `01215` = "http://www.city.bibai.hokkaido.jp/jyumin/docs/2015091100032/",
+    `01216` = NA_character_,
+    `01217` = "https://www.city.ebetsu.hokkaido.jp/life/sub/9/2/9/",
+    `01218` = "http://www.city.akabira.hokkaido.jp/docs/2018042700084/",
+    `01219` = "http://mombetsu.jp/syoukai/jinko.html",
+    `01220` = "http://www.city.shibetsu.lg.jp/www/contents/1479798737913/index.html",
+    `01233` = "https://www.city.date.hokkaido.jp/hotnews/detail/00000953.html")
+
