@@ -85,6 +85,7 @@ read_isj <- function(path = NULL,
       dplyr::mutate_at(dplyr::vars(longitude, latitude), as.double)
   }
   df %>%
+    dplyr::mutate_if(is.character, list(~ dplyr::na_if(., ""))) %>%
     dplyr::mutate_all(list(~ iconv(., from = "cp932", to = "utf8"))) %>%
     tibble::as_tibble()
 }
