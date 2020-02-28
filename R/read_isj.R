@@ -1,6 +1,22 @@
+#' Read ISJ format data
+#' @param path Input file path (`csv`)
+#' @param .area_code Area code. 5 digits numeric character.
+#' E.g. Chiba prefecture ("12000"), Ichikawa city in Chiba ("12033")
+#' @param .fiscal_year Japanese imperial fiscal year as Kanji.
+#' @param .pos_level E.g. 0 is to street level 3. 1 is to street level 1.
+#' @param .download If `TRUE`, download file to working directory.
+#' @param return_class Select "tbl_df" (data.frame) or "data.table"
+#' @seealso \url{http://nlftp.mlit.go.jp/isj/about_api.html}
+#' @export
 read_isj <- function(path = NULL,
                      .area_code = NULL, .fiscal_year = NULL, .pos_level = NULL,
-                     .download = FALSE) {
+                     .download = FALSE, return_class = NULL) {
+  . <- prefecture <- city <- cs_num <- coord_x <- coord_y <- zipFileUrl <- NULL
+  latitude <- longitude <- flag_residence <- flag_represent <- NULL
+  flag_history_before <- flag_history_after <- city_code <- NULL
+  street_lv1_code <- street_lv1 <- street_levels <- NULL
+  return_class <- rlang::arg_match(return_class,
+                                   c("tbl_df", "data.table"))
   if (is.null(path)) {
     path <- isj_data_url(.area_code, fiscal_year = .fiscal_year, pos_level = .pos_level) %>%
       dplyr::pull(zipFileUrl) %>% # nolint
@@ -85,8 +101,13 @@ read_isj <- function(path = NULL,
                     street_lv1_code = sprintf("%012s", street_lv1_code)) %>%
       dplyr::mutate_at(dplyr::vars(longitude, latitude), as.double)
   }
-  df %>%
+  df <-
+    df %>%
     dplyr::mutate_if(is.character, list(~ dplyr::na_if(., ""))) %>%
-    dplyr::mutate_all(list(~ iconv(., from = "cp932", to = "utf8"))) %>%
-    tibble::as_tibble()
+    dplyr::mutate_all(list(~ iconv(., from = "cp932", to = "utf8")))
+  if (return_class == "tbl_df") {
+    tibble::as_tibble(df)
+  } else if (return_class == "data.table") {
+    data.table::as.data.table(df)
+  }
 }
