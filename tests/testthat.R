@@ -1,4 +1,4 @@
 library(testthat)
-library(zipangu)
+library(kuniumi)
 
-test_check("zipangu")
+test_check("kuniumi")
