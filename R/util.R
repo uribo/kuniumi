@@ -18,9 +18,9 @@ build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
   req_url
 }
 
-build_isj_req_url <- function(area_code = NULL, fiscal_year = NULL) {
+build_isj_req_url <- function(area_code = NULL, fiscal_year = NULL, pos_level = 0) {
   # nolint start
-  glue::glue("{url}?appId=isjapibeta1&areaCode={area_code}&fiscalyear='{fiscal_year}'&posLevel=0",
+  glue::glue("{url}?appId=isjapibeta1&areaCode={area_code}&fiscalyear='{fiscal_year}'&posLevel={pos_level}",
              url = "http://nlftp.mlit.go.jp/isj/api/1.0b/index.php/app/getISJURL.xml") %>%
     httr::parse_url()
   # nolint end
@@ -51,8 +51,8 @@ ksj_data_url <- function(identifier = identifier, ...) {
     request_to_ksj()
 }
 
-isj_data_url <- function(area_code, fiscal_year) {
-  build_isj_req_url(area_code, fiscal_year) %>%
+isj_data_url <- function(area_code, fiscal_year, pos_level) {
+  build_isj_req_url(area_code, fiscal_year, pos_level) %>%
     request_to_ksj()
 }
 

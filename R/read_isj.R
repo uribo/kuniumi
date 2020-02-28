@@ -2,14 +2,14 @@ read_isj <- function(path = NULL,
                      .area_code = NULL, .fiscal_year = NULL, .pos_level = NULL,
                      .download = FALSE) {
   if (is.null(path)) {
-    path <- isj_data_url(.area_code, fiscal_year = .fiscal_year) %>%
+    path <- isj_data_url(.area_code, fiscal_year = .fiscal_year, pos_level = .pos_level) %>%
       dplyr::pull(zipFileUrl) %>% # nolint
       download_ksj_zip(.download = .download, source = "isj")
   }
+  df <-
+    data.table::fread(file = path) %>%
+    purrr::set_names(iconv(names(.), from = "cp932", to = "utf8"))
   if (is.null(.pos_level)) {
-    df <-
-      data.table::fread(file = path) %>%
-      as.data.frame()
     .pos_level <- dplyr::case_when(
       ncol(df) >= 13L ~ 0L,
       ncol(df) == 10L ~ 1L)
@@ -62,7 +62,8 @@ read_isj <- function(path = NULL,
                                    flag_history_before,
                                    flag_history_after),
                        as.double)
-  } else if (.pos_level == 1L) {
+  }
+  if (.pos_level == 1L) {
     df <-
       df %>%
       purrr::set_names(c("prefecture_code", "prefecture",
