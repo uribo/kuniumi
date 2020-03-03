@@ -42,6 +42,7 @@ read_ksj_l01 <- function(path = NULL, .year = NULL, .pref_code = NULL, .download
     dplyr::mutate(
       L01_006 = as.numeric(L01_006),
       L01_023 = stringi::stri_trans_general(L01_023, id = "nfkc")) %>%
+    dplyr::mutate_if(is.character, .funs = list(~ dplyr::na_if(., "_"))) %>%
     dplyr::mutate_at(dplyr::vars(
       tidyselect::num_range("L01_", seq.int(8, 20), width = 3),
       tidyselect::num_range("L01_", seq.int(28, 30), width = 3),
