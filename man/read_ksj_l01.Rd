@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_ksj_l01.R
 \name{read_ksj_l01}
 \alias{read_ksj_l01}
-\title{Kokudosuuchi L01 parser}
+\title{Kokudosuuchi L01 parser (v2.5)}
 \usage{
 read_ksj_l01(path = NULL, .year = NULL, .pref_code = NULL, .download = FALSE)
 }

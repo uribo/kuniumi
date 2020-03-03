@@ -148,10 +148,10 @@
     },
     "cli": {
       "Package": "cli",
-      "Version": "2.0.1",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5173d8ab28680cf263636b110f4f3220"
+      "Hash": "ff0becff7bfdfe3f75d29aff8f3172dd"
     },
     "clipr": {
       "Package": "clipr",
@@ -378,6 +378,13 @@
       "RemoteSha": "0.3.1",
       "Hash": "6154ec2223172bce8162d4153cda21f7"
     },
+    "janitor": {
+      "Package": "janitor",
+      "Version": "1.2.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5b1dd03e95bfdec3ef8d010801345426"
+    },
     "jpmesh": {
       "Package": "jpmesh",
       "Version": "1.1.3.9000",
@@ -410,13 +417,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "915a6f0134cdbdf016d7778bc80b2eda"
-    },
-    "kokudosuuchi": {
-      "Package": "kokudosuuchi",
-      "Version": "0.4.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "140fd62749613c4f88ff68760e4cd129"
     },
     "labeling": {
       "Package": "labeling",
@@ -752,6 +752,13 @@
       "Repository": "CRAN",
       "Hash": "6ca23724bb2c804c1d0b3db4862a39c7"
     },
+    "snakecase": {
+      "Package": "snakecase",
+      "Version": "0.11.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4079070fc210c7901c0832a3aeab894f"
+    },
     "sourcetools": {
       "Package": "sourcetools",
       "Version": "0.1.7",
@@ -761,10 +768,10 @@
     },
     "sp": {
       "Package": "sp",
-      "Version": "1.4-0",
+      "Version": "1.4-1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "faa16caa79d66f09b556d5632e1856fa"
+      "Hash": "a44a3cebab900c0f77e16804f361468e"
     },
     "stringi": {
       "Package": "stringi",

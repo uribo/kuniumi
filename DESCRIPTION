@@ -16,7 +16,6 @@ Imports:
     httr,
     jpmesh,
     jpndistrict,
-    kokudosuuchi,
     lubridate,
     magrittr,
     purrr,
