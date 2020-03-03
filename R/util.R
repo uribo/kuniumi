@@ -98,6 +98,17 @@ zip_a30a5_url <- function(meshcode) {
       "-jgd_GML.zip")
 }
 
+zip_l01_url <- function(year, pref_code) {
+  year <- as.character(year)
+  year <- rlang::arg_match(year,
+                           values = as.character(seq.int(1983, 2019)))
+  glue::glue(
+    "http://nlftp.mlit.go.jp/ksj/gml/data/L01/L01-{year_dir}/L01-{year_dir}_{pref_code}_GML.zip", # nolint
+    year_dir = substr(year, 3L, 4L),
+    pref_code = sprintf("%02d", as.numeric(pref_code)) %>%
+      jpndistrict:::prefcode_validate())
+}
+
 zip_l03a_url <- function(year, meshcode, datum = 2) {
   year <- as.character(year)
   year <- rlang::arg_match(year,
@@ -279,7 +290,6 @@ download_ksj_zip <- function(dl_zip, .download = FALSE, ...) {
 }
 
 check_dl_comment <- function(source = NULL) {
-
   warning(
     glue::glue(
       intToUtf8(c(12371, 12398, 12469, 12540, 12499, 12473, 12399,
