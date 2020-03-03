@@ -37,35 +37,21 @@ read_ksj_l01 <- function(path = NULL, .year = NULL, .pref_code = NULL, .download
                        stringsAsFactors = FALSE)
     }
   }
-  d <-
-    d %>%
-    dplyr::mutate(
-      L01_006 = as.numeric(L01_006),
-      L01_023 = stringi::stri_trans_general(L01_023, id = "nfkc")) %>%
-    dplyr::mutate_if(is.character, .funs = list(~ dplyr::na_if(., "_"))) %>%
-    dplyr::mutate_at(dplyr::vars(
-      tidyselect::num_range("L01_", seq.int(8, 20), width = 3),
-      tidyselect::num_range("L01_", seq.int(28, 30), width = 3),
-      L01_054),
-      .funs = list(~ dplyr::recode(.,
-                                   `false` = FALSE,
-                                   `true` = TRUE)))
-
-    if(ncol(d) < 127) {
-      kubun_vars <- "法規制"
-    } else {
-      kubun_vars <- c("用途区分", "防火区分", "都市計画区分", "森林区分", "公園区分")
-    }
+  if(ncol(d) < 127) {
+    kubun_vars <- "法規制"
+  } else {
+    kubun_vars <- c("用途区分", "防火区分", "都市計画区分", "森林区分", "公園区分")
+  }
   zokusei_vars <-
-    paste0("属性移動_",
-           c("選定状況", "住所漢字", "地積", "利用の現況", "建物構造",
-             "供給施設", "駅からの距離",
-             kubun_vars[-1],
-             "法規制", "建ぺい率", "容積率"))
+    c("選定状況", "住所漢字", "地積", "利用の現況", "建物構造",
+      "供給施設", "駅からの距離",
+      kubun_vars[-1],
+      "法規制", "建ぺい率", "容積率")
   common_vars <-
     c("標準地コード_見出し番号", "標準地コード_一連番号", "前年度標準地コード_見出し番号", "前年度標準地コード_一連番号",
       "年度", "公示価格",
-      zokusei_vars,
+      paste0("属性移動_",
+             zokusei_vars),
       "標準地行政コード", "標準地市区町村名称", "住居表示", "地積",
       "利用現況", "利用状況表示", "建物構造",
       "供給施設有無（水道）", "供給施設有無（ガス）", "供給施設有無（下水）",
@@ -89,5 +75,15 @@ read_ksj_l01 <- function(path = NULL, .year = NULL, .pref_code = NULL, .download
   last_vars <- ncol(d) - length(common_vars)
   names(d)[seq.int((length(common_vars) + 1), (((length(common_vars) + 1) + length(kakaku_vars[seq.int(last_vars %/% 2)])))-1)] <- kakaku_vars[seq.int(last_vars %/% 2)]
   names(d)[seq.int((length(common_vars) + 1) + length(kakaku_vars[seq.int(last_vars %/% 2)]), ncol(d) -1)] <- zokuseiido_vars[seq.int(last_vars %/% 2)-1]
-  d
+  d %>%
+    dplyr::mutate_if(is.character, .funs = list(~ dplyr::na_if(., "_"))) %>%
+    dplyr::mutate_at(dplyr::vars(tidyselect::matches(
+      glue::glue("属性移動_({vars})",
+                 vars = paste0(zokusei_vars[-1], collapse = "|"))
+    ),
+    tidyselect::starts_with("供給施設有無"),
+    tidyselect::matches("^共通地点$")),
+    .funs = list( ~ dplyr::recode(.,
+                                  `false` = FALSE,
+                                  `true` = TRUE)))
 }
