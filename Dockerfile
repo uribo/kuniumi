@@ -1,4 +1,4 @@
-FROM rocker/geospatial:3.6.1
+FROM rocker/geospatial:3.6.2
 
 RUN set -x && \
   apt-get update
@@ -9,6 +9,5 @@ RUN set -x && \
   echo "GITHUB_PAT=$GITHUB_PAT" >> /usr/local/lib/R/etc/Renviron
 
 RUN set -x && \
-  R -e 'install.packages("remotes", repos = c(CRAN = "https://cran.rstudio.com"))' && \
-  R -e 'remotes::install_github("rstudio/renv@0.8.3")' && \
+  R -e 'install.packages("renv", repos = c(CRAN = "https://cran.rstudio.com"))' && \
   rm -rf /tmp/downloaded_packages/ /tmp/*.rds
