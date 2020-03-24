@@ -425,6 +425,13 @@
       "Repository": "CRAN",
       "Hash": "915a6f0134cdbdf016d7778bc80b2eda"
     },
+    "kokudosuuchi": {
+      "Package": "kokudosuuchi",
+      "Version": "0.4.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "140fd62749613c4f88ff68760e4cd129"
+    },
     "labeling": {
       "Package": "labeling",
       "Version": "0.3",

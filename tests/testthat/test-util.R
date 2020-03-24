@@ -18,6 +18,20 @@ test_that("ksj a10 works", {
   expect_error(expect_message(zip_a10_url(0, 2011)))
 })
 
+test_that("ksj A16 works", {
+  expect_equal(
+    zip_a16_url(1, 2015),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/A16/A16-15/A16-15_01_GML.zip")
+  expect_equal(
+    zip_a16_url(1, 2010),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/A16/A16-10/A16-10_01_GML.zip")
+  expect_error(zip_a16_url(0, 1960))
+  expect_error(zip_a16_url(47, 1960))
+  expect_equal(
+    zip_a16_url(46, 1960),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/A16/A16-60/A16-60_46_GML.zip")
+})
+
 test_that("ksj a30 works", {
   expect_equal(zip_a30a5_url(meshcode = 4229),
                "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_4229-jgd_GML.zip") # nolint
