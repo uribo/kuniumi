@@ -266,6 +266,16 @@ zip_w05_url <- function(pref_code) {
                  d$year == "2009" ~ "09"))
 }
 
+zip_a16 <- function(year, pref_code = NULL) {
+  year <- rlang::arg_match(year,
+                           values = c("2006", "2011", "2018"))
+  pref_code <-
+    sprintf("%02d", as.numeric(pref_code)) %>%
+    jpndistrict:::prefcode_validate()
+  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/A09/A09-{yy}/A09-{yy}_{pref_code}_GML.zip", # nolint
+             yy = substr(year, 3, 4))
+}
+
 #' @importFrom utils download.file unzip
 download_ksj_zip <- function(dl_zip, .download = FALSE, ...) {
   path <- dplyr::if_else(.download == TRUE,
@@ -287,6 +297,18 @@ download_ksj_zip <- function(dl_zip, .download = FALSE, ...) {
                     recursive = TRUE),
          value = TRUE,
        ignore.case = TRUE)
+}
+
+check_area_code <- function(area_code) {
+  if (is.numeric(area_code)) {
+    area_code <-
+      sprintf("%02d", area_code)
+  } else if (is.character(area_code)) {
+    area_code <-
+      sprintf("%02s", area_code)
+  }
+  rlang::arg_match(area_code,
+                   sprintf("%02d", seq.int(0, 47)))
 }
 
 check_dl_comment <- function(source = NULL) {
