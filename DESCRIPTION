@@ -14,7 +14,7 @@ Imports:
     dplyr,
     glue,
     httr,
-    jpmesh,
+    jpmesh (>= 1.2.0),
     jpndistrict,
     kokudosuuchi,
     lubridate,
@@ -29,8 +29,6 @@ Imports:
     tidyselect,
     units,
     xml2
-Remotes:
-    uribo/jpmesh
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.0.2
