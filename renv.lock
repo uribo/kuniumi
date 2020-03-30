@@ -60,10 +60,10 @@
     },
     "Rcpp": {
       "Package": "Rcpp",
-      "Version": "1.0.3",
+      "Version": "1.0.4",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f3ca785924863b0e4c8cb23b6a5c75a1"
+      "Hash": "5ef9c463e30f8aea49c293e4b8d9d7be"
     },
     "askpass": {
       "Package": "askpass",
@@ -127,17 +127,17 @@
     },
     "callr": {
       "Package": "callr",
-      "Version": "3.4.2",
+      "Version": "3.4.3",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d16f6e202179e69c1400cc1f845bfc09"
+      "Hash": "643163a00cb536454c624883a10ae0bc"
     },
     "class": {
       "Package": "class",
-      "Version": "7.3-15",
+      "Version": "7.3-16",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4fba6a022803b6c3f30fd023be3fa818"
+      "Hash": "ebc639c4432a2e9c17f195d004848100"
     },
     "classInt": {
       "Package": "classInt",
@@ -178,6 +178,13 @@
       "Repository": "CRAN",
       "Hash": "6b436e95723d1f0e861224dd9b094dfb"
     },
+    "colourvalues": {
+      "Package": "colourvalues",
+      "Version": "0.3.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "4cd44a4e3cf7371fd8a8dc569c00720b"
+    },
     "crayon": {
       "Package": "crayon",
       "Version": "1.3.4",
@@ -187,10 +194,10 @@
     },
     "crosstalk": {
       "Package": "crosstalk",
-      "Version": "1.0.0",
+      "Version": "1.1.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4ac529753d1e529966ef675d7f0c762b"
+      "Hash": "ae55f5d7c02f0ab43c58dd050694f2b4"
     },
     "curl": {
       "Package": "curl",
@@ -283,6 +290,13 @@
       "Repository": "CRAN",
       "Hash": "ce9248b6e65e2282afb9e53abc6a83cc"
     },
+    "geojsonsf": {
+      "Package": "geojsonsf",
+      "Version": "1.3.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "22149e0e0ea1cb4725b15d05ee6ed01f"
+    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.3.0",
@@ -306,10 +320,17 @@
     },
     "glue": {
       "Package": "glue",
-      "Version": "1.3.1",
+      "Version": "1.3.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "d4e25697c450c01b202c79ef35694a83"
+      "Hash": "af1f47b63d1aa2206c1fe4d3db1d9366"
+    },
+    "googlePolylines": {
+      "Package": "googlePolylines",
+      "Version": "0.7.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "d947d05b3f3afaa3457e3cda9044ee50"
     },
     "gridExtra": {
       "Package": "gridExtra",
@@ -394,15 +415,15 @@
     },
     "jpmesh": {
       "Package": "jpmesh",
-      "Version": "1.1.3.9000",
+      "Version": "1.2.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "uribo",
       "RemoteRepo": "jpmesh",
+      "RemoteUsername": "uribo",
       "RemoteRef": "master",
-      "RemoteSha": "b5eba176a128a4b717a607ad30e31eb5ad76b14d",
-      "Hash": "fce0c7cc9a78d6b789c8bdda08a5c2dd"
+      "RemoteSha": "7d492ebbea20a8ba1382039f00c2f00fa5dc7c6d",
+      "Hash": "651563da625deca846e956be3b98eaa4"
     },
     "jpndistrict": {
       "Package": "jpndistrict",
@@ -410,6 +431,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "1b51fea46490c91db354ac21171fd91c"
+    },
+    "jsonify": {
+      "Package": "jsonify",
+      "Version": "1.1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "5b6d70fc92e471ba0d10f9cb6f4ce19a"
     },
     "jsonlite": {
       "Package": "jsonlite",
@@ -462,10 +490,10 @@
     },
     "leafem": {
       "Package": "leafem",
-      "Version": "0.0.1",
+      "Version": "0.1.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "7ccedebffade23aa33b07dd8cff20fa0"
+      "Hash": "eb7fd578214445b7514b62a575e9847c"
     },
     "leaflet": {
       "Package": "leaflet",
@@ -512,6 +540,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "1bb58822a20301cee84a41678e25d9b7"
+    },
+    "mapdeck": {
+      "Package": "mapdeck",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b74b181e10b242b3dae41d5d0bc6a92b"
     },
     "mapview": {
       "Package": "mapview",
@@ -664,6 +699,13 @@
       "Repository": "CRAN",
       "Hash": "22aca7d1181718e927d403a8c2d69d62"
     },
+    "rapidjsonr": {
+      "Package": "rapidjsonr",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "88b9f48c93d17cdb811b54079a6a414f"
+    },
     "raster": {
       "Package": "raster",
       "Version": "3.0-12",
@@ -752,12 +794,19 @@
       "Repository": "CRAN",
       "Hash": "250c1c903919bf0b6509663d66787be0"
     },
-    "shiny": {
-      "Package": "shiny",
-      "Version": "1.4.0",
+    "sfheaders": {
+      "Package": "sfheaders",
+      "Version": "0.2.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "6ca23724bb2c804c1d0b3db4862a39c7"
+      "Hash": "0daf332f569bde82b56326eb9e545cc8"
+    },
+    "shiny": {
+      "Package": "shiny",
+      "Version": "1.4.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a56d058adfc9df30bdd45dbb01cec39f"
     },
     "snakecase": {
       "Package": "snakecase",
@@ -779,6 +828,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "a44a3cebab900c0f77e16804f361468e"
+    },
+    "spatialwidget": {
+      "Package": "spatialwidget",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "f4588b2210738a6845e0a1e8e74d7209"
     },
     "stringi": {
       "Package": "stringi",
@@ -961,8 +1017,8 @@
       "RemoteUsername": "uribo",
       "RemoteRepo": "zipangu",
       "RemoteRef": "master",
-      "RemoteSha": "82ce80f478c8269d751f8a7cc34ae4bc35dbcea1",
-      "Hash": "0d747d7912f0a9cb0b4c887d11ff0351"
+      "RemoteSha": "2cff1b6e648d4af3c7f3e245d65941df092a343d",
+      "Hash": "949b64ce9a22caaf9a880d5b419c5129"
     }
   }
 }
