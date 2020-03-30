@@ -36,6 +36,15 @@ test_that("ksj a30 works", {
   expect_equal(zip_a30a5_url(meshcode = 4229),
                "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_4229-jgd_GML.zip") # nolint
 })
+
+test_that("ksj c02 works", {
+  expect_error(zip_c02_url(2015))
+  expect_equal(
+    zip_c02_url(2014),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/C02/C02-14/C02-14_GML.zip")
+})
+
+
 test_that("ksj c23 works", {
   expect_equal(zip_c23_url(pref_code = 33),
                "http://nlftp.mlit.go.jp/ksj/gml/data/C23/C23-06/C23-06_33_GML.zip") # nolint
