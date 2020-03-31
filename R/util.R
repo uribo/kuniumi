@@ -46,6 +46,14 @@ request_to_ksj <- function(x) {
     parse_ksj_xml()
 }
 
+view_ksj_description <- function(identifier) {
+  url <-
+    paste0("http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-",
+           identifier,
+           ".html")
+  utils::browseURL(url)
+}
+
 ksj_data_url <- function(identifier = identifier, ...) {
   build_req_url("getKSJURL", identifier = identifier, ...) %>%
     request_to_ksj()
