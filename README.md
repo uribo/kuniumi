@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# zipangu
+# kuniumi
 
 <!-- badges: start -->
 
@@ -13,22 +13,27 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 データの用意は基本的にユーザが行ってください。パッケージは、対象のファイルを統一的なフォーマットで読み込む仕様です。
 
+## 対象データ
+
+  - 国土交通省 [国土数値情報ダウンロードサービス](http://nlftp.mlit.go.jp/ksj/)
+  - 国土交通省 [位置参照情報ダウンロードサービス](http://nlftp.mlit.go.jp/isj/index.html)
+
 ## インストール
 
 パッケージのインストールはGitHubから行います。remotesパッケージが必要となるので、必要に応じてそちらをインストールしておきます。
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("uribo/zipangu")
+remotes::install_github("uribo/kuniumi")
 ```
 
 ## 使い方
 
 ``` r
-library(zipangu)
+library(kuniumi)
 library(dplyr)
 
-zipangu:::ksj_data_url("N03") %>% 
+kuniumi:::ksj_data_url("N03") %>% 
   filter(year == "2015", datum == "1", areaCode == "33") %>% 
   pull(zipFileUrl) %>% 
   download.file(url = .,
@@ -43,7 +48,7 @@ stringr::str_remove(basename(files), ".zip") %>%
   list.files(recursive = TRUE, 
              pattern = ".shp", 
              full.names = TRUE) %>% 
-  read_ksj_n03()
+  read_ksj_n03(path = .)
 ```
 
 ## クレジット
