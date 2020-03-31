@@ -8,45 +8,61 @@ zip_p23_url <- function(pref_code) {
 }
 
 #' Kokudosuuchi P23 parser
-#' @inheritParams read_ksj_n03
+#' @inheritParams read_ksj_a16
 #' @param .type File type. When downloading a file, select the type of data to use, either "point" or "line".
 #' @description If there is no local file, specify prefecture code to download.
 #' @export
-read_ksj_p23 <- function(path = NULL, .pref_code = NULL, .download = FALSE,
-                         .type = c("point", "line")) {
+read_ksj_p23 <- function(path = NULL, translate = "jp", .pref_code = NULL, .download = FALSE,
+                         .type) {
   if (is.null(path)) {
     dl_zip <-
       zip_p23_url(.pref_code)
-    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
-    rlang::arg_match(.type)
+    path <-
+      download_ksj_zip(dl_zip, .download = .download, source = "ksj")
+    type <-
+      rlang::arg_match(.type,
+                     c("point", "line"))
     if (sum(file.exists(path)) == 2L)
       path <- switch(.type,
                      point = grep("P23a", path, value = TRUE),
                      line = grep("P23b", path, value = TRUE))
   }
-  st_read_crs4612(path) %>%
-    purrr::set_names(c(
-      "administrativeAreaCode",
-      "competentAuthority",
-      "administrator",
-      paste0("facilityType_",
-            c("bank",
-              "groin",
-              "bankProtection",
-              "breastWall",
-              "offshoreBreakwater",
-              "sandyBeach",
-              "otherFacilities")),
-      "length",
-      "baseLevel",
-      "copeLevelMaxPresent",
-      "copeLevelMinPresent",
-      "copeLevelMaxPlan",
-      "copeLevelMinPlan",
-      "geometry"
-    )) %>%
-    dplyr::mutate_at(dplyr::vars(tidyselect::starts_with("facilityType_")),
-                     list(~ dplyr::case_when(
-                              . == "f" ~ FALSE,
-                              . == "t" ~ TRUE)))
+  lang <-
+    rlang::arg_match(translate,
+                     c("raw", "jp", "en"))
+  d <-
+    st_read_crs4612(path)
+  if (lang == "jp") {
+    d <-
+      d %>%
+      kokudosuuchi::translateKSJData()
+  } else if (lang == "en") {
+    d <-
+      d %>%
+      purrr::set_names(c(
+        "administrativeAreaCode",
+        "competentAuthority",
+        "administrator",
+        paste0("facilityType_",
+               c("bank",
+                 "groin",
+                 "bankProtection",
+                 "breastWall",
+                 "offshoreBreakwater",
+                 "sandyBeach",
+                 "otherFacilities")),
+        "length",
+        "baseLevel",
+        "copeLevelMaxPresent",
+        "copeLevelMinPresent",
+        "copeLevelMaxPlan",
+        "copeLevelMinPlan",
+        "geometry"
+      ))
+  }
+  d %>%
+    purrr::modify_at(seq.int(4, 10),
+                     ~ dplyr::case_when(
+                       .x == "f" ~ FALSE,
+                       .x == "t" ~ TRUE))
 }
