@@ -4,10 +4,13 @@
 \alias{read_ksj_c02}
 \title{Kokudosuuchi C02 parser}
 \usage{
-read_ksj_c02(path = NULL, .year = NULL, .download = FALSE)
+read_ksj_c02(path = NULL, translate = "jp", .year = NULL, .download = FALSE)
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
+
+\item{translate}{Translate the variable name into the specified language.
+You can choose either Original (`raw`) and Japanese (`jp`) or English (`en`).}
 
 \item{.year}{Specific year}
 

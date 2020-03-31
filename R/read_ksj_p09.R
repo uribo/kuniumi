@@ -33,14 +33,24 @@ zip_p09 <- function(meshcode) {
 }
 
 #' Kokudosuuchi P09 parser
-#' @inheritParams read_ksj_n03
+#' @inheritParams read_ksj_a16
 #' @inheritParams read_ksj_a30a5
 #' @export
-read_ksj_p09 <- function(path, .meshcode = NULL, .download = FALSE) {
+read_ksj_p09 <- function(path, translate = "jp", .meshcode = NULL, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
       zip_p09(.meshcode)
     path <- download_ksj_zip(dl_zip, .download = .download)
   }
-  st_read_crs4612(path)
+  lang <-
+    rlang::arg_match(translate,
+                     c("raw", "jp", "en"))
+  d <-
+    st_read_crs4612(path)
+  if (lang == "jp") {
+    d <-
+      d %>%
+      kokudosuuchi::translateKSJData()
+  }
+  d
 }

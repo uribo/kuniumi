@@ -6,13 +6,17 @@
 \usage{
 read_ksj_p12(
   path = NULL,
+  translate = "jp",
   .pref_code = NULL,
   .download = FALSE,
-  .type = c("point", "line", "polygon")
+  .type
 )
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
+
+\item{translate}{Translate the variable name into the specified language.
+You can choose either Original (`raw`) and Japanese (`jp`) or English (`en`).}
 
 \item{.pref_code}{Specific prefecture code}
 

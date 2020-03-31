@@ -1,15 +1,19 @@
 #' Kokudosuuchi C02 parser
-#' @inheritParams read_ksj_n03
+#' @inheritParams read_ksj_a16
 #' @description If there is no local file, specify the year to download.
 #' @export
-read_ksj_c02 <- function(path = NULL, .year = NULL, .download = FALSE) {
+read_ksj_c02 <- function(path = NULL, translate = "jp", .year = NULL, .download = FALSE) {
   C02_005 <- C02_007 <- NULL
   if (is.null(path)) {
     path <-
       zip_c02_url(.year) %>%
       download_ksj_zip(.download = .download, source = "ksj")
   }
-  path %>%
+  translate <-
+    rlang::arg_match(translate,
+                     c("raw", "jp"))
+  d <-
+    path %>%
     purrr::map(
       function(.x) {
         x <-
@@ -30,6 +34,14 @@ read_ksj_c02 <- function(path = NULL, .year = NULL, .download = FALSE) {
         }
       }
     )
+  if (translate == "jp") {
+    d <-
+      d %>%
+      purrr::map(
+        kokudosuuchi::translateKSJData
+      )
+  }
+  d
 }
 
 zip_c02_url <- function(year) {
