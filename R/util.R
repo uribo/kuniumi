@@ -355,3 +355,33 @@ check_dl_comment <- function(source = NULL) {
     call. = FALSE
   )
 }
+
+ksj_common_meshes <- function(identifier) {
+  areaCode <- year <- NULL
+  d <-
+    kokudosuuchi::getKSJURL(identifier = identifier)
+  d_meshes <-
+    d %>%
+    dplyr::distinct(year, areaCode) %>%
+    dplyr::group_by(year) %>%
+    dplyr::group_map(
+      ~ .x %>%
+        dplyr::pull(areaCode) %>%
+        unique() %>%
+        sort()) %>%
+    purrr::set_names(d %>%
+                       dplyr::group_by(year, areaCode) %>%
+                       dplyr::group_keys() %>%
+                       dplyr::pull(year) %>%
+                       unique())
+
+  list(
+    all = d_meshes,
+    common = d_meshes %>%
+      purrr::reduce(c) %>%
+      table() %>%
+      as.list() %>%
+      purrr::keep(~ .x == length(d_meshes)) %>%
+      names()
+  )
+}
