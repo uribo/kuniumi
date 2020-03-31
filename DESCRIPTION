@@ -1,10 +1,11 @@
 Package: kuniumi
-Title: What the Package Does (One Line, Title Case)
+Title: Load and Handles Geo-Spatial Data on Japan's National Land
 Version: 0.0.0.9000
 Authors@R: c(
     person(given = "Shinya", family = "Uryu", email = "suika1127@gmail.com", role  = c("aut", "cre"), comment = c(ORCID = "0000-0002-0493-6186"))
     )
-Description: What the package does (one paragraph).
+Description: Reads datasets provided by National Land Numerical Information download service <http://nlftp.mlit.go.jp/ksj/index.html> 
+    and treats them as 'sf' of a R spatial objects.
 License: MIT + file LICENSE
 Depends: 
     R (>= 3.1)

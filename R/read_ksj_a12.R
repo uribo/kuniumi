@@ -13,13 +13,17 @@ read_ksj_a09 <- function(path = NULL,
   if (is.null(path)) {
     dl_zip <-
       zip_a09(.year, .pref_code)
-    path <- download_ksj_zip(dl_zip, .download = .download, source = "ksj")
+    path <-
+      download_ksj_zip(dl_zip, .download = .download, source = "ksj")
   }
   path
 }
 
-zip_a12_url <- function(year = c("2015", "2011", "2006"), pref_code = NULL) {
-  year <- rlang::arg_match(year)
+zip_a12_url <- function(year, pref_code = NULL) {
+  year <-
+    as.character(year)
+  year <- rlang::arg_match(year,
+                           c("2006", "2011", "2015"))
   pref_code <-
     sprintf("%02d", as.numeric(pref_code)) %>%
     jpndistrict:::prefcode_validate()
