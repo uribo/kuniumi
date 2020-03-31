@@ -6,15 +6,18 @@
 \usage{
 read_ksj_l03b(
   path = NULL,
+  translate = "jp",
   .year,
   .meshcode,
   .datum,
-  .download = FALSE,
-  .translate = "jp"
+  .download = FALSE
 )
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
+
+\item{translate}{Translate the variable name into the specified language.
+You can choose either Original (`raw`) and Japanese (`jp`) or English (`en`).}
 
 \item{.year}{Specific year}
 
@@ -23,9 +26,6 @@ read_ksj_l03b(
 \item{.datum}{"jgd" or "tky"}
 
 \item{.download}{If `true`, the specified file is downloaded to the current working directory.}
-
-\item{.translate}{Translate the variable name into the specified language.
-You can choose either Japanese (`jp`) or English (`en`).}
 }
 \description{
 If there is no local file, specify the meshcode to download.

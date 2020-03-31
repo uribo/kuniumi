@@ -4,7 +4,7 @@
 #' @param .datum "jgd" or "tky"
 #' @description If there is no local file, specify the meshcode to download.
 #' @export
-read_ksj_l03b <- function(path = NULL, .year, .meshcode, .datum, .download = FALSE, .translate = "jp") {
+read_ksj_l03b <- function(path = NULL, translate = "jp", .year, .meshcode, .datum, .download = FALSE) {
   if (is.null(path)) {
     dl_zip <-
       zip_l03b_url(year = .year, meshcode = .meshcode, datum = .datum)
@@ -15,8 +15,8 @@ read_ksj_l03b <- function(path = NULL, .year, .meshcode, .datum, .download = FAL
     st_read_crs4612(path,
                     options = c("ENCODING=CP932"))
   lang <-
-    rlang::arg_match(.translate,
-                     c("jp", "en"))
+    rlang::arg_match(translate,
+                     c("raw", "jp", "en"))
   if (lang == "en") {
     d <-
       d %>%

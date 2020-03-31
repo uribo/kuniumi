@@ -49,6 +49,24 @@ test_that("ksj c23 works", {
                "http://nlftp.mlit.go.jp/ksj/gml/data/C23/C23-06/C23-06_33_GML.zip") # nolint
 })
 
+test_that("ksj L03-b works", {
+  expect_message(
+    zip_l03b_url(year = 2016, meshcode = 6741, datum = "jgd")
+  )
+  expect_equal(
+    zip_l03b_url(year = 2016, meshcode = 4630, datum = "jgd"),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/L03-b/L03-b-16/L03-b-16_4630-jgd_GML.zip"
+  )
+  expect_equal(
+    zip_l03b_url(year = 2016, meshcode = 4630, datum = "tky"),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/L03-b/L03-b-16/L03-b-16_4630-tky_GML.zip"
+  )
+  expect_equal(
+    zip_l03b_url(year = 1987, meshcode = 3036, datum = "jgd"),
+    "http://nlftp.mlit.go.jp/ksj/gml/data/L03-b/L03-b-87/L03-b-87_3036-jgd_GML.zip"
+  )
+})
+
 test_that("ksj L03-b-u works", {
   expect_message(
     zip_l03bu_url(year = 2016, meshcode = 3624, datum = "jgd")

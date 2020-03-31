@@ -6,23 +6,23 @@
 \usage{
 read_ksj_a16(
   path = NULL,
+  translate = "jp",
   .pref_code = NULL,
   .year = NULL,
-  .download = TRUE,
-  .translate = NULL
+  .download = TRUE
 )
 }
 \arguments{
 \item{path}{Input file path (`.shp` or `.geojson`)}
+
+\item{translate}{Translate the variable name into the specified language.
+You can choose either Original (`raw`) and Japanese (`jp`) or English (`en`).}
 
 \item{.pref_code}{Specific prefecture code}
 
 \item{.year}{Specific year}
 
 \item{.download}{If `true`, the specified file is downloaded to the current working directory.}
-
-\item{.translate}{Translate the variable name into the specified language.
-You can choose either Japanese (`jp`) or English (`en`).}
 }
 \description{
 If there is no local file, specify the year and pref_code to download.

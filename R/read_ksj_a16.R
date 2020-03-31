@@ -1,10 +1,10 @@
 #' Kokudosuuchi A10 parser
 #' @inheritParams read_ksj_n03
-#' @param .translate Translate the variable name into the specified language.
-#' You can choose either Japanese (`jp`) or English (`en`).
+#' @param translate Translate the variable name into the specified language.
+#' You can choose either Original (`raw`) and Japanese (`jp`) or English (`en`).
 #' @description If there is no local file, specify the year and pref_code to download.
 #' @export
-read_ksj_a16 <- function(path = NULL, .pref_code = NULL, .year = NULL, .download = TRUE, .translate = NULL) {
+read_ksj_a16 <- function(path = NULL, translate = "jp", .pref_code = NULL, .year = NULL, .download = TRUE) {
   if (is.null(path)) {
     dl_zip <-
       zip_a16_url(.pref_code, .year)
@@ -16,31 +16,33 @@ read_ksj_a16 <- function(path = NULL, .pref_code = NULL, .year = NULL, .download
       path %>%
       stringr::str_subset("shp$")
     d <-
-      st_read_crs6668()
+      st_read_crs6668(path)
   } else if (sum(grepl(".geojson$", basename(path))) >= 1L) {
     path <-
       path %>%
       stringr::str_subset("geojson$")
-    d <- sf::st_read(dsn = path,
-                     as_tibble = TRUE,
-                     stringsAsFactors = FALSE) %>%
+    d <-
+      sf::st_read(dsn = path,
+                  as_tibble = TRUE,
+                  stringsAsFactors = FALSE) %>%
       sf::st_transform(crs = 6668)
   }
-  if (!is.null(.translate)) {
-    lang <- rlang::arg_match(.translate,
-                                  c("jp", "en"))
-    if (lang == "jp") {
-      d <-
-        d %>%
-        kokudosuuchi::translateKSJData()
-    } else {
-      d <-
-        d %>%
-        purrr::set_names(c("didId", "administrativeAreaCode", "cityName", "didCode",
-                           "population", "area", "previousPopulation", "previousArea",
-                           "populationRatio", "areaRatio", "censusYear", "geometry"))
+    lang <-
+      rlang::arg_match(translate,
+                       c("raw", "jp", "en"))
+    if (lang != "raw") {
+      if (lang == "jp") {
+        d <-
+          d %>%
+          kokudosuuchi::translateKSJData()
+      } else {
+        d <-
+          d %>%
+          purrr::set_names(c("didId", "administrativeAreaCode", "cityName", "didCode",
+                             "population", "area", "previousPopulation", "previousArea",
+                             "populationRatio", "areaRatio", "censusYear", "geometry"))
+      }
     }
-  }
 d
 }
 
