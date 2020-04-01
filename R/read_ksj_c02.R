@@ -25,8 +25,10 @@ read_ksj_c02 <- function(path = NULL, translate = "jp", .year = NULL, .download 
           if (stringi::stri_enc_detect(d$C02_005[1])[[1]]$Encoding[1] != "UTF-8") {
             d <-
               d %>%
-              dplyr::mutate_at(dplyr::vars(C02_005, C02_007),
-                               list(~ iconv(., from = "cp932", to = "UTF8")))
+              purrr::modify_at(c(5, 7),
+                               ~ iconv(.x, from = "cp932", to = "UTF8")) %>%
+              purrr::modify_at(c(8, 9),
+                               lubridate::ymd)
           }
           d
         } else {
