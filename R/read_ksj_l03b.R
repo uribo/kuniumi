@@ -36,7 +36,7 @@ zip_l03b_url <- function(year, meshcode, datum) {
     as.character(year)
   rlang::arg_match(year,
                    c("1976", "1987", "1991", "1997",
-                     "2006", "2009", "2016", "2014"))
+                     "2006", "2009", "2014", "2016"))
   datum <-
     rlang::arg_match(datum,
                      c("jgd", "tky"))
