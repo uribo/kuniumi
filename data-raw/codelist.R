@@ -25,7 +25,42 @@ l_ksj_landuse <-
        `1987`   = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-88.html",
        `1976`   = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-77.html") %>%
   purrr::map(extract_ksj_codelist,
-             names = c("code", "type", "definition")) %>%
+             names = c("code", "type", "definition"))
+
+landuse_rgb_cols <-
+  tibble::tibble(
+    code = l_ksj_landuse$`2016` %>%
+      filter(!is.na(type)) %>%
+      pull(code),
+    color = matrix(
+      c(255, 255, 0,
+        255, 204, 153,
+        0, 170, 0,
+        255, 153, 0,
+        255, 0, 0,
+        140, 140, 140,
+        180, 180, 180,
+        200, 70, 15,
+        0, 0, 255,
+        255, 255, 153,
+        0, 204, 255,
+        0, 255, 0
+        #,
+        #255, 255, 255
+      ),
+      ncol = 3,
+      byrow = TRUE
+    ) %>%
+      apply(1, function(x) {
+        rgb(red = x[1],
+            green = x[2],
+            blue = x[3],
+            maxColorValue = 255)}))
+
+l_ksj_landuse <-
+  l_ksj_landuse %>%
+  purrr::modify_at(1,
+                   ~ dplyr::left_join(.x, landuse_rgb_cols, by = "code")) %>%
   purrr::list_modify(`2014` = .$`2016`,
                      `2009` = .$`2016`,
                      `1997` = .$`2006`,
@@ -61,7 +96,7 @@ ksj_code_list <-
   list(
   pref = l_ksj_pref,
   adminarea = l_ksj_adminarea,
-  land_use = l_ksj_landuse,
+  landuse = l_ksj_landuse,
   tourismresource = l_ksj_tourismresource,
   naturalfeature = l_ksj_naturalfeature,
   naturalscene = l_ksj_naturalscene)
