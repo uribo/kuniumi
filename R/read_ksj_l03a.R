@@ -35,7 +35,7 @@ read_ksj_l03a <- function(path = NULL, .year = NULL, .meshcode = NULL, .download
     d <-
       d %>%
       purrr::set_names(c("meshcode", "ta", "nouchi", "sinrin",
-                         "kouch", "tatemono", "douro", "tetudou",
+                         "kouchi", "tatemono", "douro", "tetudou",
                          "other", "kasen", "kaihin", "kaisui",
                          "golf", "geometry"))
   }

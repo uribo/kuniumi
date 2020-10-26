@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 services:
   rstudio:
     build:
@@ -8,7 +8,8 @@ services:
     ports:
       - "8787:8787"
     volumes:
-      - ".:/home/rstudio/kuniumi"
-      - "/home/rstudio/kuniumi/renv/library/R-3.6/x86_64-apple-darwin18.6.0"
+      - .:/home/rstudio/textlintr
+      - ${RENV_PATHS_CACHE_HOST}:/home/rstudio/.local/share/renv
     environment:
-      PASSWORD: ${PASSWORD}
+      - PASSWORD=${PASSWORD}
+      - RENV_PATHS_CACHE=/home/rstudio/.local/share/renv/cache
