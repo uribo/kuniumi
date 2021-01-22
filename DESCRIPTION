@@ -41,5 +41,7 @@ Suggests:
     rvest (>= 0.3.5),
     usethis (>= 1.5.1),
     testthat (>= 2.1.0)
+Remotes:
+    uribo/jpndistrict
 URL: https://github.com/uribo/kuniumi
 BugReports: https://github.com/uribo/kuniumi/issues
