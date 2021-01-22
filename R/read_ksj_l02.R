@@ -122,7 +122,8 @@ read_ksj_l02 <- function(path = NULL, .year = NULL, .pref_code = NULL, .download
     dplyr::mutate(dplyr::across(where(is.character),
                   .fns = ~dplyr::na_if(.x, "_"))) %>%
     dplyr::mutate(dplyr::across(.cols = c(tidyselect::starts_with("属性移動"),
-                                          tidyselect::starts_with("供給施設有無")),
+                                          tidyselect::starts_with("供給施設有無"),
+                                          "共通地点"),
                   .fns = ~dplyr::case_when(.x == "false" ~ FALSE,
                                     .x == "true" ~ TRUE)))
 }
