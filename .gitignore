@@ -3,3 +3,4 @@
 .RData
 .env
 inst/ksj
+.DS_Store
