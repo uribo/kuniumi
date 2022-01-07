@@ -5,7 +5,7 @@ build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
   rlang::arg_match(api)
   req_url <-
     glue::glue(
-      "http://nlftp.mlit.go.jp/ksj/api/{version}/index.php/app/{api}.xml?appId={app_id}&lang={lang}&dataformat={data_format}", # nolint
+      "https://nlftp.mlit.go.jp/ksj/api/{version}/index.php/app/{api}.xml?appId={app_id}&lang={lang}&dataformat={data_format}", # nolint
       version = "1.0b",
       app_id = "ksjapibeta1",
       lang = "J",
@@ -24,7 +24,7 @@ build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
 build_isj_req_url <- function(area_code = NULL, fiscal_year = NULL, pos_level = 0) {
   # nolint start
   glue::glue("{url}?appId=isjapibeta1&areaCode={area_code}&fiscalyear='{fiscal_year}'&posLevel={pos_level}",
-             url = "http://nlftp.mlit.go.jp/isj/api/1.0b/index.php/app/getISJURL.xml") %>%
+             url = "https://nlftp.mlit.go.jp/isj/api/1.0b/index.php/app/getISJURL.xml") %>%
     httr::parse_url()
   # nolint end
 }
@@ -51,7 +51,7 @@ request_to_ksj <- function(x) {
 
 view_ksj_description <- function(identifier) {
   url <-
-    paste0("http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-",
+    paste0("https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-",
            identifier,
            ".html")
   utils::browseURL(url)
@@ -104,7 +104,7 @@ zip_a30a5_url <- function(meshcode) {
                       negate = TRUE)
   if (as.character(meshcode) %in% target_mesh)
     paste0(
-      "http://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_",
+      "https://nlftp.mlit.go.jp/ksj/gml/data/A30a5/A30a5-11/A30a5-11_",
       meshcode,
       "-jgd_GML.zip")
 }
@@ -174,7 +174,7 @@ zip_l03a_url <- function(year, meshcode, datum = 2) {
       NULL
     } else {
       glue::glue(
-        "http://nlftp.mlit.go.jp/ksj/gml/data/L03-a/L03-a-{year_dir}/L03-a-",
+        "https://nlftp.mlit.go.jp/ksj/gml/data/L03-a/L03-a-{year_dir}/L03-a-",
         dplyr::if_else(stringr::str_detect(year_dir, "09|14|16"),
                        "{year_dir}_{meshcode}-jgd_GML.zip",
                        "{year_dir}_{meshcode}_GML.zip"))
@@ -188,7 +188,7 @@ zip_n05_url <- function(year) {
                            values = as.character(
                              seq.int(2011, 2018, by = 1L)))
   glue::glue(
-    "http://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-{year_dir}/N05-{year_dir_zip}", # nolint
+    "https://nlftp.mlit.go.jp/ksj/gml/data/N05/N05-{year_dir}/N05-{year_dir_zip}", # nolint
     year_dir = substr(year, 3L, 4L),
     year_dir_zip = dplyr::if_else(year == "2013",
                                   "13.zip",
@@ -232,7 +232,7 @@ zip_n03_url <- function(year, pref_code) {
       year == "2018" ~ "180101",
       year == "2019" ~ "190101")
   paste0(
-    "http://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-",
+    "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-",
     year,
     "/N03-", # nolint
     year_dir,
@@ -247,7 +247,7 @@ zip_n02_url <- function(year) {
 
   year_dir <- substr(year, 3, 4)
   paste0(
-    "http://nlftp.mlit.go.jp/ksj/gml/data/N02/N02-",
+    "https://nlftp.mlit.go.jp/ksj/gml/data/N02/N02-",
     year_dir,
     "/N02-", # nolint
     year_dir,
@@ -280,7 +280,7 @@ zip_w05_url <- function(pref_code) {
       "29", "30")) %>%
     dplyr::filter(pref_code == !! rlang::enquo(pref_code))
 
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-{year_dir}/W05-{year_dir}_{pref_code}_GML.zip", # nolint
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/W05/W05-{year_dir}/W05-{year_dir}_{pref_code}_GML.zip", # nolint
              year_dir = dplyr::case_when(
                  d$year == "2006" ~ "06",
                  d$year == "2007" ~ "07",
@@ -294,7 +294,7 @@ zip_a16 <- function(year, pref_code = NULL) {
   pref_code <-
     sprintf("%02d", as.numeric(pref_code)) %>%
     jpndistrict:::prefcode_validate()
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/A09/A09-{yy}/A09-{yy}_{pref_code}_GML.zip", # nolint
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/A09/A09-{yy}/A09-{yy}_{pref_code}_GML.zip", # nolint
              yy = substr(year, 3, 4))
 }
 
@@ -362,8 +362,8 @@ check_dl_comment <- function(source = NULL) {
         ~ intToUtf8(c(22269, 22303, 25968, 20516, 24773, 22577), # nolint
         multiple = FALSE)),
       source_url = dplyr::case_when(
-        source == "isj" ~ "http://nlftp.mlit.go.jp/isj/agreement.html",
-        source == "ksj" ~ "http://nlftp.mlit.go.jp/ksj/other/yakkan.html"
+        source == "isj" ~ "https://nlftp.mlit.go.jp/isj/agreement.html",
+        source == "ksj" ~ "https://nlftp.mlit.go.jp/ksj/other/yakkan.html"
       )
     ),
     call. = FALSE
