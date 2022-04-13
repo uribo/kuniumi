@@ -6,7 +6,7 @@
 #' @param .pos_level E.g. 0 is to street level 3. 1 is to street level 1.
 #' @param .download If `TRUE`, download file to working directory.
 #' @param return_class Select "tbl_df" (data.frame) or "data.table"
-#' @seealso \url{http://nlftp.mlit.go.jp/isj/about_api.html}
+#' @seealso \url{https://nlftp.mlit.go.jp/isj/about_api.html}
 #' @export
 read_isj <- function(path = NULL,
                      .area_code = NULL, .fiscal_year = NULL, .pos_level = NULL,

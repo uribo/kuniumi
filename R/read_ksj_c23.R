@@ -6,7 +6,7 @@ zip_c23_url <- function(pref_code) {
                        "25", "29")) {
     rlang::abort("There is no target prefecture data.")
   } else {
-    glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/C23/C23-06/C23-06_{pref_code}_GML.zip") # nolint
+    glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/C23/C23-06/C23-06_{pref_code}_GML.zip") # nolint
   }
 }
 

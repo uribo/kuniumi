@@ -52,7 +52,7 @@ zip_c02_url <- function(year) {
   year <-
     rlang::arg_match(year,
                      c("2006", "2008", "2014"))
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_GML.zip",
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_GML.zip",
              id = "C02",
              yy = substr(year, 3, 4))
 }

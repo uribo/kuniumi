@@ -2,7 +2,7 @@ zip_p19_url <- function(pref_code = NULL) {
   pref_code <-
     sprintf("%02d", as.numeric(pref_code)) %>%
     jpndistrict:::prefcode_validate()
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/P19/P19-12/P19-12_{pref_code}_GML.zip") # nolint
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P19/P19-12/P19-12_{pref_code}_GML.zip") # nolint
 }
 
 #' Kokudosuuchi P19 parser

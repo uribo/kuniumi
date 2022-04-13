@@ -4,7 +4,7 @@ zip_p23_url <- function(pref_code) {
     jpndistrict:::prefcode_validate()
   if (length(pref_code[pref_code %in% c("09", "10", "11", "19", "20", "21", "25", "29")]) > 0) # nolint
     rlang::abort("There is no target prefecture data.")
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/P23/P23-12/P23-12_{pref_code}_GML.zip") # nolint
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P23/P23-12/P23-12_{pref_code}_GML.zip") # nolint
 }
 
 #' Kokudosuuchi P23 parser

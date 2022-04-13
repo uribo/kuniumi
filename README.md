@@ -15,8 +15,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 ## 対象データ
 
-  - 国土交通省 [国土数値情報ダウンロードサービス](http://nlftp.mlit.go.jp/ksj/)
-  - 国土交通省 [位置参照情報ダウンロードサービス](http://nlftp.mlit.go.jp/isj/index.html)
+-   国土交通省
+    [国土数値情報ダウンロードサービス](https://nlftp.mlit.go.jp/ksj/)
+-   国土交通省
+    [位置参照情報ダウンロードサービス](https://nlftp.mlit.go.jp/isj/index.html)
 
 ## インストール
 
@@ -53,7 +55,8 @@ stringr::str_remove(basename(files), ".zip") %>%
 
 ## クレジット
 
-このサービスは、「国土交通省 位置参照情報 <http://nlftp.mlit.go.jp/isj/index.html>
-」および「国土交通省 国土数値情報
-<http://nlftp.mlit.go.jp/ksj/index.html> 」をもとに加工者が作成したものです。
+このサービスは、「国土交通省 位置参照情報
+<https://nlftp.mlit.go.jp/isj/index.html> 」および「国土交通省
+国土数値情報 <https://nlftp.mlit.go.jp/ksj/index.html>
+」をもとに加工者が作成したものです。
 ダウンロードしたファイルを利用する際は、個別の利用約款をご確認ください。

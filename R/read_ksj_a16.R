@@ -59,7 +59,7 @@ zip_a16_url <- function(area_code, year) {
   if (area_code %in% c("00", "47") & year %in% c("1960", "1965") | area_code == "00" & year %in% as.character(seq.int(1970, 2005, by = 5))) {
     rlang::abort("mismatch")
   }
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{area_code}_GML.zip",
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{area_code}_GML.zip",
              id = "A16",
              yy = substr(year, 3, 4))
 }

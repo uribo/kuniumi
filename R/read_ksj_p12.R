@@ -1,11 +1,11 @@
 zip_p12_url <- function(pref_code = NULL) {
   if (is.null(pref_code))
-    "http://nlftp.mlit.go.jp/ksj/gml/data/P12/P12-14/P12-14_GML.zip"
+    "https://nlftp.mlit.go.jp/ksj/gml/data/P12/P12-14/P12-14_GML.zip"
   else {
     pref_code <-
       sprintf("%02d", as.numeric(pref_code)) %>%
       jpndistrict:::prefcode_validate()
-    glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/P12/P12-14/P12-14_{pref_code}_GML.zip") # nolint
+    glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P12/P12-14/P12-14_{pref_code}_GML.zip") # nolint
   }
 }
 

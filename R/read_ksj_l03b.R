@@ -171,12 +171,12 @@ zip_l03b_url <- function(year, meshcode, datum) {
                                candidate_meshes = paste(target_meshes,
                                                         collapse = ", ")))
     } else {
-      glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
+      glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
                  id = "L03-b",
                  yy = substr(year, 3, 4))
     }
   } else {
-    glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
+    glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
                id = "L03-b",
                yy = substr(year, 3, 4))
   }

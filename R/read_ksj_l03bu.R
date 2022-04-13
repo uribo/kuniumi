@@ -92,7 +92,7 @@ zip_l03bu_url <- function(year, meshcode, datum) {
         "5840", "5841", "5939", "5940", "6039", "6040")
   }
   if (as.character(meshcode) %in% target_meshes) {
-    glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
+    glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/{id}/{id}-{yy}/{id}-{yy}_{meshcode}-{datum}_GML.zip",
                id = "L03-b-u",
                yy = substr(year, 3, 4))
   } else {

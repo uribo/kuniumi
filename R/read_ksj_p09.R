@@ -29,7 +29,7 @@ zip_p09 <- function(meshcode) {
                    "6645", "6741", "6742", "6841")
   if (length(meshcode[meshcode %in% target_mesh]) == 0L)
     rlang::abort("No data with selected meshcode.")
-  glue::glue("http://nlftp.mlit.go.jp/ksj/gml/data/P09/P09-10/P09-10_{meshcode}-jgd_GML.zip") # nolint
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P09/P09-10/P09-10_{meshcode}-jgd_GML.zip") # nolint
 }
 
 #' Kokudosuuchi P09 parser
