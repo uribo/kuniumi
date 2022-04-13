@@ -31,5 +31,5 @@ E.g. Chiba prefecture ("12000"), Ichikawa city in Chiba ("12033")}
 Read ISJ format data
 }
 \seealso{
-\url{http://nlftp.mlit.go.jp/isj/about_api.html}
+\url{https://nlftp.mlit.go.jp/isj/about_api.html}
 }
