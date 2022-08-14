@@ -14,8 +14,6 @@ ksj_bind(dir, identifier, regexp = NULL, translate = NULL)
 \item{regexp}{A regular expression passed on target directory.}
 
 \item{translate}{Path to parser function. "raw", "jp" or "en".}
-
-\item{...}{Additional arguments to parser function}
 }
 \description{
 Bind KSJ files in directory
