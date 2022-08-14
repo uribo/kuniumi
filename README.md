@@ -22,11 +22,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 
 ## インストール
 
-パッケージのインストールはGitHubから行います。remotesパッケージが必要となるので、必要に応じてそちらをインストールしておきます。
+パッケージのインストールはr-universe経由で行います。下記のコマンドを実行することでインストールが実行されます。
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("uribo/kuniumi")
+install.packages("kuniumi", repos = "https://uribo.r-universe.dev")
 ```
 
 ## 使い方
