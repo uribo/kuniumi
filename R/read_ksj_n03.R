@@ -36,7 +36,7 @@ read_ksj_n03 <- function(path = NULL,
       }
     }
   d %>%
-        purrr::set_names(dplyr::recode(names(d),
+    purrr::set_names(dplyr::recode(names(d),
                                        N03_001 = "prefectureName",
                                        N03_002 = "subPrefectureName",
                                        N03_003 = "countyName",
@@ -44,8 +44,8 @@ read_ksj_n03 <- function(path = NULL,
                                        N03_005 = "formationDate",
                                        N03_006 = "disappearanceDate",
                                        N03_007 = "administrativeAreaCode")) %>%
-    dplyr::mutate_at(dplyr::vars(tidyselect::ends_with("Date")),
-                     as.Date)
+    dplyr::mutate(dplyr::across(tidyselect::ends_with("Date"),
+                  as.Date))
 }
 
 #' Kokudosuuchi N02 parser
