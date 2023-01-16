@@ -8,12 +8,23 @@ library(dplyr)
 library(sf)
 library(stringr)
 # 全国の市町村数 -----------------------------------------------------------------
-# 1902 --------------------------------------------------------------------
+# 220116 --------------------------------------------------------------------
+dir.create("data-raw/N03")
+if (!file.exists("data-raw/N03/N03-22_220101.geojson")) {
+  options(timeout = 3600)
+  download.file("https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2022/N03-20220101_GML.zip",
+                "data-raw/N03/N03-20220101_GML.zip")
+  options(timeout = 60)
+  unzip("data-raw/N03/N03-20220101_GML.zip",
+        exdir = "data-raw/N03")
+  usethis::use_git_ignore("data-raw/N03")
+}
 df_jp_all <-
-  read_ksj_n03("~/Documents/resources/国土数値情報/N03/2019/N03-190101_GML/N03-19_190101.geojson") %>%
+  read_ksj_n03("data-raw/N03/N03-22_220101.geojson") %>%
   st_drop_geometry() %>%
+  filter(!is.na(administrativeAreaCode)) %>%
   distinct(prefectureName, countyName, cityName, administrativeAreaCode) %>%
-  assertr::verify(nrow(.) == 1909) %>%
+  assertr::verify(nrow(.) == 1902L) %>%
   janitor::clean_names() %>%
   mutate(admin_type = case_when(
     str_detect(city_name, "区$") ~ "ward",
@@ -23,17 +34,9 @@ df_jp_all <-
     str_detect(city_name, "^所属未定地$") ~ "unfixed")) %>%
   filter(admin_type != "unfixed") %>%
   # arrange(administrative_area_code) %>%
-  mutate(
-    city_name = if_else(
-      administrative_area_code == "28221",
-      "丹波篠山市",
-      city_name)) %>%
   assertr::verify(nrow(.) == 1902L)
 
 # forcats::fct_relevel("ward", "city", "town", "village")
-
-
-# df_jp_all %>% arrange(administrative_area_code) するとだめ。df_jp_all1724 を作成した後に行う
 
 # 1724 --------------------------------------------------------------------
 # 政令指定都市の市町村コード
