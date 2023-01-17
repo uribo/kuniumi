@@ -97,39 +97,41 @@ df_jp_all <-
   df_jp_all %>%
   arrange(administrative_area_code)
 
-collect_city_website_url <- memoise::memoise(
-  function(city) {
+collect_url_via_wikipedia <- memoise::memoise(
+  function(.x) {
+  res <-
+    WikidataR::find_item(.x, language = "ja")
+  res_id <-
+    res %>%
+    purrr::keep(~ !is.null(.x$description) &&
+                  grepl("((village|town|city|one of).+ Japan|special ward of Tokyo)",
+                        .x$description,
+                        ignore.case = FALSE)) %>%
+    purrr::flatten() %>%
+    purrr::pluck("id")
+  if (is.null(res_id)) {
+    NA_character_
+  } else {
+    res_url <-
+      res_id %>%
+      WikidataR::get_item() %>%
+      purrr::map(c("claims", "P856", "mainsnak", "datavalue", "value")) %>%
+      purrr::flatten_chr() %>%
+      purrr::pluck(1)
+    if (is.null(res_url)) {
+      res_url <- NA_character_
+    }
+    res_url
+  }
+})
+
+
+collect_city_website_url <- function(city) {
     city %>%
       purrr::map_chr(
-        function(.x) {
-          res <-
-            WikidataR::find_item(.x, language = "ja")
-          res_id <-
-            res %>%
-            purrr::keep(~ !is.null(.x$description) &&
-                          grepl("((village|town|city|one of).+ Japan|special ward of Tokyo)",
-                                .x$description,
-                                ignore.case = FALSE)) %>%
-            purrr::flatten() %>%
-            purrr::pluck("id")
-          if (is.null(res_id)) {
-            NA_character_
-          } else {
-            res_url <-
-              res_id %>%
-              WikidataR::get_item() %>%
-              purrr::map(c("claims", "P856", "mainsnak", "datavalue", "value")) %>%
-              purrr::flatten_chr() %>%
-              purrr::pluck(1)
-            if (is.null(res_url)) {
-              res_url <- NA_character_
-            }
-            res_url
-          }
-        }
-      )
+        collect_url_via_wikipedia,
+        .progress = TRUE)
   }
-)
 # collect_city_website_url("つくば市")
 # collect_city_website_url("清川村")
 # collect_city_website_url("丹波篠山市") # 新しいものもOK
@@ -151,11 +153,23 @@ if (file.exists("data-raw/city_list1724_url.csv") == FALSE) {
     df_jp_all1724 %>%
     filter(!city_name %in% duplicate_city_names) %>%
     assertr::verify(nrow(.) == 1688L)
-
-  urls <-
-    df_jp_all1724_comp$city_name %>%
-    purrr::map_chr(collect_city_website_url)
-  df_jp_all1724_comp$url <- urls
+  # [todo]API制限回避のために分割
+  urls1 <-
+    df_jp_all1724_comp$city_name[1:300] %>%
+    collect_city_website_url()
+  urls2 <-
+    df_jp_all1724_comp$city_name[301:600] %>%
+    collect_city_website_url()
+  urls3 <-
+    df_jp_all1724_comp$city_name[601:900] %>%
+    collect_city_website_url()
+  urls4 <-
+    df_jp_all1724_comp$city_name[901:1200] %>%
+    collect_city_website_url()
+  urls5 <-
+    df_jp_all1724_comp$city_name[1201:nrow(df_jp_all1724_comp)] %>%
+    collect_city_website_url()
+  df_jp_all1724_comp$url <- c(urls1, urls2, urls3, urls4, urls5)
   df_jp_all1724_comp %>%
     readr::write_csv("data-raw/city_list1724_url.csv")
 } else {
@@ -171,11 +185,9 @@ df_jp_all1724_manualfix <-
       mutate(admin_type = as.character(admin_type)),
     df_jp_all1724_comp %>%
       filter(is.na(url)) %>%
-      assertr::verify(nrow(.) == 49L) %>%
-      select(-url)) %>%
-  assertr::verify(nrow(.) == 108L)
-
-ensurer::ensure(length(.) == nrow(df_jp_all1724_manualfix))
+      assertr::verify(nrow(.) == 14L) %>%
+      select(!url)) %>%
+  assertr::verify(nrow(.) == 73L)
 
 df_jp_all1724_manualfix <-
   df_jp_all1724_manualfix %>%
@@ -183,7 +195,7 @@ df_jp_all1724_manualfix <-
 
 df_jp_all1724_manualfix %>%
   filter(is.na(url)) %>%
-  slice(-seq.int(7)) %>%
+  slice(-seq.int(8)) %>%
   assertr::verify(nrow(.) == 0L)
 
 city_list <-
@@ -191,7 +203,7 @@ city_list <-
     df_jp_all1724_comp %>%
       filter(!is.na(url)),
     df_jp_all1724_manualfix)
+city_list <-
+  city_list %>%
+  mutate(url = recode(administrative_area_code, !!!city_url_fix, .default = url))
 usethis::use_data(city_list, overwrite = TRUE)
-# city_list <-
-#   city_list %>%
-#   mutate(url = recode(administrative_area_code, !!!city_url_fix, .default = url))
