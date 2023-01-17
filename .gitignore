@@ -4,3 +4,4 @@
 .env
 inst/ksj
 .DS_Store
+data-raw/N03
