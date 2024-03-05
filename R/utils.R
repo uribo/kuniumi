@@ -403,3 +403,11 @@ ksj_common_meshes <- function(identifier) {
       names()
   )
 }
+
+prefcode_validate <- function(pref_code) {
+  codes <-
+    sapply(seq(1, 47, 1), sprintf, fmt = "%d")
+  if (identical(codes[codes %in% pref_code], character(0)))
+    rlang::abort("jis_code must be start a integer or as character from 1 to 47.")
+  as.numeric(pref_code)
+}
