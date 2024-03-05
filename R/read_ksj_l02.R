@@ -119,7 +119,7 @@ read_ksj_l02 <- function(path = NULL, .year = NULL, .pref_code = NULL, .download
     purrr::set_names(c(common_vars,
                        status_vars,
                        "geometry")) %>%
-    dplyr::mutate(dplyr::across(where(is.character),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character),
                   .fns = ~dplyr::na_if(.x, "_"))) %>%
     dplyr::mutate(dplyr::across(.cols = c(tidyselect::starts_with("属性移動"),
                                           tidyselect::starts_with("供給施設有無"),

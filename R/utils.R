@@ -1,6 +1,4 @@
 #' @import utils
-utils::globalVariables("where")
-
 build_req_url <- function(api = c("getKSJSummary", "getKSJURL"), ...) {
   rlang::arg_match(api)
   req_url <-

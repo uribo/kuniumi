@@ -26,7 +26,7 @@ read_ksj_p13 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
                                    P13_008 = "供用済面積",
                                    P13_009 = "都市計画決定",
                                    P13_010 = "備考")) %>%
-    dplyr::mutate(dplyr::across(where(is.character),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character),
                                 .fns = stringi::stri_trans_general,
                                 id = "nfkc"))
 }

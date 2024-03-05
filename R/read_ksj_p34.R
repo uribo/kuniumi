@@ -21,7 +21,7 @@ read_ksj_p34 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
                                    P34_002 = "施設分類",
                                    P34_003 = "名称",
                                    P34_004 = "所在地")) %>%
-    dplyr::mutate(dplyr::across(where(is.character),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character),
                                 .fns = stringi::stri_trans_general,
                                 id = "nfkc"))
 }
