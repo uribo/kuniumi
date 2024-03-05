@@ -27,10 +27,8 @@ read_ksj_p34 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
 }
 
 zip_p34_url <- function(pref_code = NULL) {
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
   glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P{file_code}/P{file_code}-{year_last2}/P{file_code}-{year_last2}_{pref_code}_GML.zip", # nolint
              file_code = "34",
-             year_last2 = "14")
+             year_last2 = "14",
+             pref_code = make_prefcode(pref_code))
 }

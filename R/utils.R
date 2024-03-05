@@ -114,8 +114,7 @@ zip_l01_url <- function(year, pref_code) {
   glue::glue(
     "https://nlftp.mlit.go.jp/ksj/gml/data/L01/L01-{year_dir}/L01-{year_dir}_{pref_code}_GML.zip", # nolint
     year_dir = substr(year, 3L, 4L),
-    pref_code = sprintf("%02d", as.numeric(pref_code)) %>%
-      jpndistrict:::prefcode_validate())
+    pref_code = make_prefcode(pref_code))
 }
 
 zip_l02_url <- function(year, pref_code) {
@@ -125,8 +124,7 @@ zip_l02_url <- function(year, pref_code) {
   glue::glue(
     "https://nlftp.mlit.go.jp/ksj/gml/data/L02/L02-{year_dir}/L02-{year_dir}_{pref_code}_GML.zip", # nolint
     year_dir = substr(year, 3L, 4L),
-    pref_code = sprintf("%02d", as.numeric(pref_code)) %>%
-      jpndistrict:::prefcode_validate())
+    pref_code = make_prefcode(pref_code))
 }
 
 zip_l03a_url <- function(year, meshcode, datum = 2) {
@@ -233,16 +231,9 @@ zip_n03_url <- function(year, pref_code) {
       year == "2020" ~ "20200101",
       year == "2021" ~ "20210101",
       year == "2022" ~ "20220101")
-  paste0(
-    "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-",
-    year,
-    "/N03-", # nolint
-    year_dir,
-    "_",
-    sprintf("%02d", as.numeric(pref_code)) %>%
-      jpndistrict:::prefcode_validate(),
-    "_GML.zip"
-  )
+  glue::glue(
+    "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-{year}/N03-{year_dir}_{pref_code}_GML.zip",
+    pref_code = make_prefcode(pref_code))
 }
 
 zip_n02_url <- function(year) {
@@ -261,8 +252,7 @@ zip_n02_url <- function(year) {
 
 zip_w05_url <- function(pref_code) {
   pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
+    make_prefcode(pref_code)
   d <-
     tibble::tibble(
     year = c(rep("2006", 4),
@@ -293,11 +283,9 @@ zip_w05_url <- function(pref_code) {
 zip_a16 <- function(year, pref_code = NULL) {
   year <- rlang::arg_match(year,
                            values = c("2006", "2011", "2018"))
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
   glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/A09/A09-{yy}/A09-{yy}_{pref_code}_GML.zip", # nolint
-             yy = substr(year, 3, 4))
+             yy = substr(year, 3, 4),
+             pref_code = make_prefcode(pref_code))
 }
 
 #' @importFrom utils download.file unzip
@@ -404,8 +392,14 @@ ksj_common_meshes <- function(identifier) {
 
 prefcode_validate <- function(pref_code) {
   codes <-
-    sapply(seq(1, 47, 1), sprintf, fmt = "%d")
+    sapply(seq(1, 47, 1), sprintf, fmt = "%02d")
   if (identical(codes[codes %in% pref_code], character(0)))
     rlang::abort("jis_code must be start a integer or as character from 1 to 47.")
-  as.numeric(pref_code)
+  pref_code
+}
+
+make_prefcode <- function(pref_code) {
+  prefcode_validate(
+    sprintf("%02d", as.numeric(pref_code))
+  )
 }

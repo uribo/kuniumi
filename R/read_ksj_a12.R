@@ -1,11 +1,10 @@
 zip_a09 <- function(year, pref_code = NULL) {
   year <- rlang::arg_match(year,
                            values = c("2006", "2011", "2018"))
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
+
   glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/A09/A09-{yy}/A09-{yy}_{pref_code}_GML.zip", # nolint
-             yy = substr(year, 3, 4))
+             yy = substr(year, 3, 4),
+             pref_code = make_prefcode(pref_code))
 }
 
 read_ksj_a09 <- function(path = NULL,
@@ -24,11 +23,9 @@ zip_a12_url <- function(year, pref_code = NULL) {
     as.character(year)
   year <- rlang::arg_match(year,
                            c("2006", "2011", "2015"))
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
   glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/A12/A12-{yy}/A12-{yy}_{pref_code}_GML.zip", # nolint
-             yy = substr(year, 3, 4))
+             yy = substr(year, 3, 4),
+             pref_code = make_prefcode(pref_code))
 }
 
 read_ksj_a12 <- function(path = NULL,

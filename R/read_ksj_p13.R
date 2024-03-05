@@ -32,8 +32,6 @@ read_ksj_p13 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
 }
 
 zip_p13_url <- function(pref_code) {
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
-  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P13/P13-11/P13-11_{pref_code}_GML.zip")
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P13/P13-11/P13-11_{pref_code}_GML.zip",
+             pref_code = make_prefcode(pref_code))
 }
