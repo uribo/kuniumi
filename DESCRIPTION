@@ -16,7 +16,6 @@ Imports:
     glue (>= 1.3.2),
     httr (>= 1.4.1),
     jpmesh (>= 1.2.0),
-    jpndistrict (>= 0.3.4),
     kokudosuuchi (>= 0.4.2),
     lubridate (>= 1.7.4),
     magrittr (>= 1.5),
@@ -42,7 +41,5 @@ Suggests:
     rvest (>= 0.3.5),
     usethis (>= 1.5.1),
     testthat (>= 2.1.0)
-Remotes:
-    uribo/jpndistrict
 URL: https://github.com/uribo/kuniumi
 BugReports: https://github.com/uribo/kuniumi/issues
