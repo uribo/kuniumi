@@ -118,7 +118,7 @@ df_address_tmp <-
 
 
 # geocoding ---------------------------------------------------------------
-library(jpndistrict)
+# library(jpndistrict)
 library(sf)
 df_isj_a <-
   readr::read_rds("~/Documents/projects2019/jp-address/data-raw/isj_2018a.rds")

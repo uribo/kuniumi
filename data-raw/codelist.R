@@ -20,10 +20,10 @@ extract_ksj_codelist <- function(url, names = NULL) {
 }
 
 l_ksj_landuse <-
-  list(`2016` = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-09.html",
-       `2006`   = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-YY.html",
-       `1987`   = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-88.html",
-       `1976`   = "http://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-77.html") %>%
+  list(`2016` = "https://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-09.html",
+       `2006`   = "https://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-YY.html",
+       `1987`   = "https://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-88.html",
+       `1976`   = "https://nlftp.mlit.go.jp/ksj/gml/codelist/LandUseCd-77.html") %>%
   purrr::map(extract_ksj_codelist,
              names = c("code", "type", "definition"))
 
@@ -71,7 +71,7 @@ l_ksj_landuse <-
 
 # Pref (P12)
 l_ksj_pref <-
-  extract_ksj_codelist("http://nlftp.mlit.go.jp/ksj/gml/codelist/PrefCd.html") %>% {
+  extract_ksj_codelist("https://nlftp.mlit.go.jp/ksj/gml/codelist/PrefCd.html") %>% {
   bind_rows(
     .[, c(1, 2)],
     .[, c(3, 4)]
@@ -81,16 +81,16 @@ l_ksj_pref <-
   purrr::set_names(c("コード", "対応する内容"))
 # AdminArea (P12)
 l_ksj_adminarea <-
-  extract_ksj_codelist("http://nlftp.mlit.go.jp/ksj/gml/codelist/AdminAreaCd.html")
+  extract_ksj_codelist("https://nlftp.mlit.go.jp/ksj/gml/codelist/AdminAreaCd.html")
 # tourismResource (P12)
 l_ksj_tourismresource <-
-  extract_ksj_codelist("http://nlftp.mlit.go.jp/ksj/gml/codelist/tourismResourceCategoryCd.html")
+  extract_ksj_codelist("https://nlftp.mlit.go.jp/ksj/gml/codelist/tourismResourceCategoryCd.html")
 # Naturalfeature (P19)
 l_ksj_naturalfeature <-
-  extract_ksj_codelist("http://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalfeatureCd.html")
+  extract_ksj_codelist("https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalfeatureCd.html")
 # Naturalscene (P19)
 l_ksj_naturalscene <-
-  list(extract_ksj_codelist("http://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalsceneCd.html"))
+  list(extract_ksj_codelist("https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalsceneCd.html"))
 
 ksj_code_list <-
   list(

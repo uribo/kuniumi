@@ -1,7 +1,6 @@
 zip_c23_url <- function(pref_code) {
   pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
+    make_prefcode(pref_code)
   if (pref_code %in% c("09", "10", "11", "19", "20", "21",
                        "25", "29")) {
     rlang::abort("There is no target prefecture data.")

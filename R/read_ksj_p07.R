@@ -5,8 +5,7 @@ zip_p07_url <- function(year, pref_code) {
   glue::glue(
     "https://nlftp.mlit.go.jp/ksj/gml/data/P07/P07-{year_dir}/P07-{year_dir}_{pref_code}_GML.zip", # nolint
     year_dir = substr(year, 3L, 4L),
-    pref_code = sprintf("%02d", as.numeric(pref_code)) %>%
-      jpndistrict:::prefcode_validate())
+    pref_code = make_prefcode(pref_code))
 }
 
 #' Kokudosuuchi P07 parser

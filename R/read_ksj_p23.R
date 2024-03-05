@@ -1,7 +1,6 @@
 zip_p23_url <- function(pref_code) {
   pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
+    make_prefcode(pref_code)
   if (length(pref_code[pref_code %in% c("09", "10", "11", "19", "20", "21", "25", "29")]) > 0) # nolint
     rlang::abort("There is no target prefecture data.")
   glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P23/P23-12/P23-12_{pref_code}_GML.zip") # nolint

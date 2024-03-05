@@ -41,24 +41,43 @@ install.packages("kuniumi", repos = "https://uribo.r-universe.dev")
 
 ```{r, echo=TRUE, eval=FALSE}
 library(kuniumi)
-library(dplyr)
 
-kuniumi:::ksj_data_url("N03") %>% 
-  filter(year == "2015", datum == "1", areaCode == "33") %>% 
-  pull(zipFileUrl) %>% 
-  download.file(url = .,
-                basename(.))
-  
-files <- 
-  list.files( pattern = ".zip$", full.names = TRUE)
-unzip(files, exdir = stringr::str_remove(basename(files), ".zip"))
-unlink(files)
-
-stringr::str_remove(basename(files), ".zip") %>% 
-  list.files(recursive = TRUE, 
-             pattern = ".shp", 
-             full.names = TRUE) %>% 
-  read_ksj_n03(path = .)
+read_ksj_n03(.pref_code = 33)
+#> trying URL 'https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2015/N03-150101_33_GML.zip'
+#> Content type 'application/zip' length 2968333 bytes (2.8 MB)
+#> ==================================================
+#> downloaded 2.8 MB
+#> 
+#> options:        ENCODING=CP932 
+#> Reading layer `N03-15_33_150101' from data source `/private/var/folders/_k/8syww8ls39n5dkvwy1yk8dgc0000gn/T/RtmpNHLfZJ/N03-150101_33_GML/N03-20150101_33_GML/N03-15_33_150101.shp' 
+#>   using driver `ESRI Shapefile'
+#> Simple feature collection with 402 features and 5 fields
+#> Geometry type: POLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: 133.2668 ymin: 34.29833 xmax: 134.4132 ymax: 35.3529
+#> Geodetic CRS:  JGD2000
+#> Simple feature collection with 402 features and 5 fields
+#> Geometry type: POLYGON
+#> Dimension:     XY
+#> Bounding box:  xmin: 133.2668 ymin: 34.29833 xmax: 134.4132 ymax: 35.3529
+#> Geodetic CRS:  JGD2000
+#> # A tibble: 402 × 6
+#>   prefectureName subPrefectureName countyName
+#> * <chr>          <chr>             <chr>     
+#> 1 岡山県         NA                岡山市    
+#> 2 岡山県         NA                岡山市    
+#> 3 岡山県         NA                岡山市    
+#> 4 岡山県         NA                岡山市    
+#> 5 岡山県         NA                岡山市    
+#> # ℹ 397 more rows
+#> # ℹ 3 more variables: cityName <chr>,
+#> #   administrativeAreaCode <chr>,
+#> #   geometry <POLYGON [°]>
+#> # ℹ Use `print(n = ...)` to see more rows
+#> Warning message:
+#> このサービスは、「国土交通省 国土数値情報（カテゴリ名）」をもとに加工者が作成
+#> 以下の国土数値情報ダウンロードサービスの利用規約をご確認の上ご利用ください：
+#> https://nlftp.mlit.go.jp/ksj/other/agreement.html 
 ```
 
 

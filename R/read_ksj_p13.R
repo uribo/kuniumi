@@ -26,14 +26,12 @@ read_ksj_p13 <- function(path = NULL, .pref_code = NULL, .download = FALSE) {
                                    P13_008 = "供用済面積",
                                    P13_009 = "都市計画決定",
                                    P13_010 = "備考")) %>%
-    dplyr::mutate(dplyr::across(where(is.character),
+    dplyr::mutate(dplyr::across(tidyselect::where(is.character),
                                 .fns = stringi::stri_trans_general,
                                 id = "nfkc"))
 }
 
 zip_p13_url <- function(pref_code) {
-  pref_code <-
-    sprintf("%02d", as.numeric(pref_code)) %>%
-    jpndistrict:::prefcode_validate()
-  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P13/P13-11/P13-11_{pref_code}_GML.zip")
+  glue::glue("https://nlftp.mlit.go.jp/ksj/gml/data/P13/P13-11/P13-11_{pref_code}_GML.zip",
+             pref_code = make_prefcode(pref_code))
 }
