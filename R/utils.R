@@ -330,7 +330,7 @@ check_dl_comment <- function(source = NULL) {
                   12289, 12300, 22269, 22303, 20132, 36890, 30465),
                 multiple = FALSE),
       " {source_service}",
-      intToUtf8(c(65288, 12459, 12486, 12468, 12522, 21517, 65289,
+      intToUtf8(c(65288, 12487, 12540, 12479, 21517, 65289,
                   12301, 12434, 12418, 12392, 12395, 21152, 24037,
                   32773, 12364, 20316, 25104),
                 multiple = FALSE),
@@ -353,7 +353,7 @@ check_dl_comment <- function(source = NULL) {
         multiple = FALSE)),
       source_url = dplyr::case_when(
         source == "isj" ~ "https://nlftp.mlit.go.jp/isj/agreement.html",
-        source == "ksj" ~ "https://nlftp.mlit.go.jp/ksj/other/yakkan.html"
+        source == "ksj" ~ "https://nlftp.mlit.go.jp/ksj/other/agreement.html"
       )
     ),
     call. = FALSE
